@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.iagobrazmendes.museumgame"
     },
     "web": {
       "bundler": "metro",
@@ -40,6 +41,21 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3a8daa43-4f2b-45bb-8d23-ccb32b28ae9c"
+      }
+    },
+    "owner": "iagobrazmendes",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/3a8daa43-4f2b-45bb-8d23-ccb32b28ae9c"
     }
   }
 }
