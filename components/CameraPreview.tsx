@@ -1,12 +1,17 @@
-import { Camera, CameraType, CameraCapturedPicture } from 'expo-camera';
+import { Camera, CameraType } from 'expo-camera';
 import { Button, StyleSheet, Text, View, Alert } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
+import { router } from 'expo-router';
+
+import { usePicture } from '../contexts/Picture';
 
 export default function CameraPreview() {
-  let camera: Camera | null
+  let camera: Camera | null;
 
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const isFocused = useIsFocused();
+  
+  const {setPicture} = usePicture();
 
   if (!permission) {
     // Camera permissions are still loading
@@ -29,22 +34,26 @@ export default function CameraPreview() {
     );
   }
 
-  function showCameraError() {
-    Alert.alert('Error while mounting camera.');
+  function handleCameraError() {
+    Alert.alert('A camera-related error occurred.');
   }
 
-  async function takePicture() {
+  function takePicture() {
     if (!camera) {
       return;
     }
 
-    const picture: CameraCapturedPicture = await camera.takePictureAsync({base64: true});
-
+    camera.takePictureAsync() 
+      .then(picture => {
+        setPicture(picture)
+        router.push('/(tabs)/three')
+      })
+      .catch(handleCameraError);
   }
 
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={CameraType.back} onMountError={showCameraError} ref={(ref) => camera = ref}>
+      <Camera style={styles.camera} type={CameraType.back} onMountError={handleCameraError} ref={(ref) => camera = ref}>
       </Camera>
       <Button onPress={takePicture} title="take photo" />
     </View>
