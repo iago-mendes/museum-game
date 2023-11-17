@@ -1,7 +1,6 @@
 import { Camera, CameraType } from 'expo-camera';
 import { Button, StyleSheet, Text, View, Alert } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { router } from 'expo-router';
 
 import { usePicture } from '../contexts/Picture';
 
@@ -11,7 +10,7 @@ export default function CameraPreview() {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const isFocused = useIsFocused();
   
-  const {setPicture} = usePicture();
+  const {scanPicture} = usePicture();
 
   if (!permission) {
     // Camera permissions are still loading
@@ -45,8 +44,7 @@ export default function CameraPreview() {
 
     camera.takePictureAsync() 
       .then(picture => {
-        setPicture(picture)
-        router.push('/(tabs)/three')
+        scanPicture(picture)
       })
       .catch(handleCameraError);
   }
