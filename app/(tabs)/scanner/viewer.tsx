@@ -1,4 +1,6 @@
 import { Image } from 'expo-image'
+import { Button } from 'react-native'
+import { router } from 'expo-router'
 
 import { Container, Text } from '../../../components/Themed'
 import { usePicture } from '../../../contexts/Picture'
@@ -14,6 +16,10 @@ export default function ScannerViewerScreen() {
     </Container>
   )
 
+  function handleContinue() {
+    router.push('/(tabs)')
+  }
+
   return (
     <Container>
       <Image
@@ -21,6 +27,7 @@ export default function ScannerViewerScreen() {
         source={picture.uri}
         transition={1000}
       />
+      <Button onPress={handleContinue} title="Continue" />
     </Container>
   )
 }
