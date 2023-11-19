@@ -56,8 +56,13 @@ export default function ScannerScreen() {
   return (
     <Container>
       <View style={styles.cameraContainer}>
-        <Camera style={styles.camera} type={CameraType.back} onMountError={handleCameraError} ref={(ref) => camera = ref}>
-        </Camera>
+        <Camera
+          style={styles.camera}
+          type={CameraType.back}
+          onMountError={handleCameraError}
+          ref={(ref) => camera = ref}
+          ratio="16:9"
+        />
         <Button onPress={takePicture} title="Scan" />
       </View>
     </Container>
