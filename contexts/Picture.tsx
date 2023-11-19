@@ -25,7 +25,7 @@ export function PictureProvider({children}: PictureProviderProps) {
 	function scanPicture(picture: CameraCapturedPicture) {
 		if (matchPicture(picture)) {
 			setPicture(picture)
-			router.push('/(tabs)/three')
+			router.push('/(tabs)/scanner/viewer')
 		} else {
 			Alert.alert("Picture didn't match!");
 		}

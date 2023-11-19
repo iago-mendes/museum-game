@@ -25,36 +25,22 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          title: 'Map',
+          tabBarIcon: ({ color }) => <TabBarIcon name="map-marker" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="scanner"
         options={{
-          title: 'Camera',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Scanner',
+          tabBarIcon: ({ color }) => <TabBarIcon name="camera" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="three"
+        name="more"
         options={{
-          title: 'Picture',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'More',
+          tabBarIcon: ({ color }) => <TabBarIcon name="navicon" color={color} />,
         }}
       />
     </Tabs>

@@ -1,9 +1,10 @@
 import { Container, Text } from '../../components/Themed'
 
-export default function MapScreen() {
+export default function MoreScreen() {
+
   return (
     <Container>
-      <Text>Map</Text>
+      <Text>More</Text>
     </Container>
   )
 }
