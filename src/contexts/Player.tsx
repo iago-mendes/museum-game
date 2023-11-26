@@ -3,7 +3,7 @@ import { ReactNode, createContext, useState, useContext } from 'react'
 type Player = 'player1' | 'player2' | 'none'
 
 type PlayerContextType = {
-	player: Player | null
+	player: Player
 	updatePlayer: (value: string | null) => void
 }
 
