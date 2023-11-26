@@ -17,7 +17,7 @@ export default function ScannerViewerScreen() {
   )
 
   function handleContinue() {
-    router.push('/(tabs)')
+    router.push('/dialogue')
   }
 
   return (
