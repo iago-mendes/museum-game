@@ -17,7 +17,8 @@ export default function ScannerViewerScreen() {
   )
 
   function handleContinue() {
-    router.push('/dialogue')
+    // TODO: get painting ID based on current picture.
+    router.push('/dialogue/harmonizing')
   }
 
   return (

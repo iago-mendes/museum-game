@@ -46,7 +46,7 @@ function RootLayoutNav() {
       <PictureProvider>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="dialogue" />
+          <Stack.Screen name="dialogue/[paintingId]" />
         </Stack>
       </PictureProvider>
     </ThemeProvider>
