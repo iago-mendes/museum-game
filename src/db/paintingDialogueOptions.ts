@@ -21,10 +21,37 @@ export const paintingDialogueOptions: Record<PaintingId, PaintingDialogueOptions
 					next: {
 						speaker: 'Man 2',
 						text: 'Jake, could you just sing the second part a little bit higher… greatly appreciated.',
-						next: null // TODO: add rest of dialogue
+						next: null, // TODO: add rest of dialogue
+						newUnlockedPainting: 'chair'
 					}
 				}
 			}
+		}
+	},
+	'chair': {
+		player1: {
+			locked: {
+				speaker: 'Chair',
+				text: "*it's a chair…*",
+				next: null
+			},
+			unlocked: {
+				speaker: 'Chair',
+				text: "*a chair doesn't have feelings*",
+				next: null
+			},
 		},
-	}
+		player2: {
+			locked: {
+				speaker: 'Chair',
+				text: "*it's a chair…*",
+				next: null
+			},
+			unlocked: {
+				speaker: 'Chair',
+				text: "This exhibition has made stand for too long, sit if you agree.",
+				next: null // TODO: implement conditional dialogues
+			}
+		}
+	},
 }

@@ -16,11 +16,6 @@ export default function ScannerViewerScreen() {
     </Container>
   )
 
-  function handleContinue() {
-    // TODO: get painting ID based on current picture.
-    router.push('/dialogue/harmonizing')
-  }
-
   return (
     <Container>
       <Image
@@ -28,7 +23,8 @@ export default function ScannerViewerScreen() {
         source={picture.uri}
         transition={1000}
       />
-      <Button onPress={handleContinue} title="Continue" />
+      <Button onPress={() => router.push('/dialogue/harmonizing')} title="Go to harmonizing" />
+      <Button onPress={() => router.push('/dialogue/chair')} title="Go to chair" />
     </Container>
   )
 }

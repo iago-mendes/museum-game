@@ -9,9 +9,7 @@ export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
   const [paintingId] = useState(params.paintingId)
 
-  const {player} = usePlayer()
-  // TODO: replace code below with context for player info.
-  const unlockedPaintings: Set<PaintingId> = new Set(['harmonizing'])
+  const {player, unlockedPaintings, addUnlockedPainting} = usePlayer()
 
   let dialogue: DialogueNode | null = null
 
@@ -51,6 +49,11 @@ export default function DialogueScreen() {
     }
 
     setShownDialogue(shownDialogue => !dialogue ? shownDialogue : [...shownDialogue, dialogue])
+
+    if (dialogue.newUnlockedPainting) {
+      addUnlockedPainting(dialogue.newUnlockedPainting)
+    }
+
     dialogue = dialogue.next
   }
 

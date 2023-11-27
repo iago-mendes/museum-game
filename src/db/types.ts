@@ -1,5 +1,6 @@
 const paintingIds = [
-	'harmonizing'
+	'harmonizing',
+	'chair'
 ] as const
 
 export type PaintingId = typeof paintingIds[number]
@@ -12,6 +13,7 @@ export type DialogueNode = {
 	text: string
 	speaker: string
 	next: DialogueNode | null
+	newUnlockedPainting?: PaintingId
 }
 
 export type PaintingDialogueOptions = {
