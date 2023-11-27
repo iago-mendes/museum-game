@@ -1,23 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocalSearchParams } from 'expo-router'
-import { Button } from 'react-native'
+import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 
 import { Container, Text, View } from '../../components/Themed'
 import { dialoguesRecord } from '../../db/dialogues'
-import { DialogueNode, DialogueOption, PaintingId, isPaintingId } from '../../db/types'
+import { DialogueNode, DialogueOption, isPaintingId } from '../../db/types'
 import { usePlayer } from '../../contexts/Player'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
   const [paintingId] = useState(params.paintingId)
+  const scrollViewRef = useRef<ScrollView>(null)
 
   const {player, unlockedPaintings, addUnlockedPainting} = usePlayer()
 
-  let dialogue: DialogueNode | undefined = undefined
-
   const [shownDialogue, setShownDialogue] = useState<DialogueNode[]>([])
   const [shownOptions, setShownOptions] = useState<DialogueOption[]>([])
-  let intervalId: NodeJS.Timeout | undefined = undefined
+
+  let dialogue: DialogueNode | undefined = undefined
+  let loopId: NodeJS.Timeout | undefined = undefined
 
   useEffect(() => {
     if (!paintingId || !isPaintingId(paintingId) || player == 'none') {
@@ -42,12 +43,12 @@ export default function DialogueScreen() {
   }, [paintingId, player])
 
   function startDialogueLoop() {
-    intervalId = setInterval(addNextDialogue, 2000)
+    loopId = setInterval(addNextDialogue, 2000)
   }
 
   function stopDialogueLoop() {
-    if (intervalId) {
-      clearInterval(intervalId)
+    if (loopId) {
+      clearInterval(loopId)
     }
   }
 
@@ -68,6 +69,8 @@ export default function DialogueScreen() {
       setTimeout(() => dialogue?.options && setShownOptions(dialogue.options), 1000)
       return
     }
+
+    scrollViewRef.current?.scrollToEnd()
 
     dialogue = dialogue.next
   }
@@ -91,18 +94,55 @@ export default function DialogueScreen() {
   )
 
   return (
-    <Container>
-      {shownDialogue.map((item, index) => (
-        <View key={index}>
-          <Text>{item.speaker}:</Text>
-          <Text>{item.text}</Text>
-        </View>
-      ))}
-      <View>
-        {shownOptions.length > 0 && shownOptions.map(option => (
-          <Button key={option.key} title={option.prompt} onPress={() => selectOption(option)} />
+    <Container style={styles.screenContainer}>
+      <ScrollView ref={scrollViewRef} style={styles.dialogueContainer}>
+        {shownDialogue.map((item, index) => (
+          <View key={index} style={styles.nodeContainer}>
+            <Text>{item.speaker}:</Text>
+            <Text>{item.text}</Text>
+          </View>
         ))}
-      </View>
+        <View style={styles.optionsContainer}>
+          {shownOptions.length > 0 && shownOptions.map(option => (
+            <TouchableOpacity key={option.key} onPress={() => selectOption(option)} style={styles.optionButton}>
+              <Text style={styles.optionPrompt}>{option.key}) {option.prompt}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
     </Container>
   )
 }
+
+const styles = StyleSheet.create({
+  screenContainer: {
+    paddingVertical: 10,
+  },
+  dialogueContainer: {
+    width: '100%',
+    paddingHorizontal: 25,
+  },
+  nodeContainer: {
+    width: '100%',
+    marginBottom: 10,
+    backgroundColor: '#ffffff18',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  optionsContainer: {
+    width: '100%',
+    alignItems: 'center',
+    gap: 5,
+  },
+  optionButton: {
+    width: '75%',
+    backgroundColor: '#0a0a58',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
+  },
+  optionPrompt: {
+    fontSize: 20,
+  }
+})
