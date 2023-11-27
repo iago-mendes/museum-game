@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Container, Text, View } from '../../components/Themed'
-import { paintingDialogueOptions } from '../../db/paintingDialogueOptions'
+import { dialoguesRecord } from '../../db/dialogues'
 import { DialogueNode, PaintingId, isPaintingId } from '../../db/types'
 import { useLocalSearchParams } from 'expo-router'
 import { usePlayer } from '../../contexts/Player'
@@ -11,24 +11,24 @@ export default function DialogueScreen() {
 
   const {player, unlockedPaintings, addUnlockedPainting} = usePlayer()
 
-  let dialogue: DialogueNode | null = null
+  let dialogue: DialogueNode | undefined = undefined
 
   const [shownDialogue, setShownDialogue] = useState<DialogueNode[]>([])
-  let intervalId: NodeJS.Timeout | null = null
+  let intervalId: NodeJS.Timeout | undefined = undefined
 
   useEffect(() => {
     if (!paintingId || !isPaintingId(paintingId) || player == 'none') {
-      dialogue = null
+      dialogue = undefined
       setShownDialogue([])
       return
     }
 
-    const dialogueOptions = paintingDialogueOptions[paintingId]
+    const dialogueOptions = dialoguesRecord[paintingId]
 
-    if (!dialogueOptions[player].locked || unlockedPaintings.has(paintingId)) {
-      dialogue = dialogueOptions[player].unlocked
+    if (!dialogueOptions.locked || unlockedPaintings.has(paintingId)) {
+      dialogue = dialogueOptions[player]
     } else {
-      dialogue = dialogueOptions[player].locked
+      dialogue = dialogueOptions.locked
     }
 
     intervalId = setInterval(addNextDialogue, 1000)
