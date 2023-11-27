@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+import { useLocalSearchParams } from 'expo-router'
+import { Button } from 'react-native'
+
 import { Container, Text, View } from '../../components/Themed'
 import { dialoguesRecord } from '../../db/dialogues'
-import { DialogueNode, PaintingId, isPaintingId } from '../../db/types'
-import { useLocalSearchParams } from 'expo-router'
+import { DialogueNode, DialogueOption, PaintingId, isPaintingId } from '../../db/types'
 import { usePlayer } from '../../contexts/Player'
 
 export default function DialogueScreen() {
@@ -14,6 +16,7 @@ export default function DialogueScreen() {
   let dialogue: DialogueNode | undefined = undefined
 
   const [shownDialogue, setShownDialogue] = useState<DialogueNode[]>([])
+  const [shownOptions, setShownOptions] = useState<DialogueOption[]>([])
   let intervalId: NodeJS.Timeout | undefined = undefined
 
   useEffect(() => {
@@ -31,30 +34,48 @@ export default function DialogueScreen() {
       dialogue = dialogueOptions.locked
     }
 
-    intervalId = setInterval(addNextDialogue, 1000)
+    startDialogueLoop()
 
     return () => {
-      if (intervalId) {
-        clearInterval(intervalId)
-      }
+      stopDialogueLoop()
     }
   }, [paintingId, player])
 
+  function startDialogueLoop() {
+    intervalId = setInterval(addNextDialogue, 2000)
+  }
+
+  function stopDialogueLoop() {
+    if (intervalId) {
+      clearInterval(intervalId)
+    }
+  }
+
   function addNextDialogue() {
     if (!dialogue) {
-      if (intervalId) {
-        clearInterval(intervalId)
-      }
+      stopDialogueLoop()
       return
     }
-
-    setShownDialogue(shownDialogue => !dialogue ? shownDialogue : [...shownDialogue, dialogue])
 
     if (dialogue.newUnlockedPainting) {
       addUnlockedPainting(dialogue.newUnlockedPainting)
     }
 
+    setShownDialogue(shownDialogue => !dialogue ? shownDialogue : [...shownDialogue, dialogue])
+
+    if (dialogue.options) {
+      stopDialogueLoop()
+      setTimeout(() => dialogue?.options && setShownOptions(dialogue.options), 1000)
+      return
+    }
+
     dialogue = dialogue.next
+  }
+
+  function selectOption(option: DialogueOption) {
+    dialogue = option.dialogue
+    setShownOptions([])
+    startDialogueLoop()
   }
 
   if (!paintingId || !isPaintingId(paintingId)) return (
@@ -77,6 +98,11 @@ export default function DialogueScreen() {
           <Text>{item.text}</Text>
         </View>
       ))}
+      <View>
+        {shownOptions.length > 0 && shownOptions.map(option => (
+          <Button key={option.key} title={option.prompt} onPress={() => selectOption(option)} />
+        ))}
+      </View>
     </Container>
   )
 }

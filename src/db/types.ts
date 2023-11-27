@@ -9,7 +9,7 @@ export function isPaintingId(id: string): id is PaintingId {
 	return typeof id === 'string' && paintingIds.includes(id as PaintingId);
 }
 
-type DialogueOption = {
+export type DialogueOption = {
 	key: string
 	prompt: string
 	dialogue: DialogueNode
