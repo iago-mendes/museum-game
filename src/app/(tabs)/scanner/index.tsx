@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View, Alert } from 'react-native'
 import { useIsFocused } from '@react-navigation/native'
 
 import { usePicture } from '../../../contexts/Picture'
-import { Container } from '../../../components/Themed'
+import { Container } from '../../../styles/ThemedComponents'
 
 export default function ScannerScreen() {
   let camera: Camera | null

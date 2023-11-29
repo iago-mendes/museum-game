@@ -1,4 +1,4 @@
-import { Container, Text } from '../../components/Themed'
+import { Container, Text } from '../../styles/ThemedComponents'
 
 export default function MapScreen() {
   return (

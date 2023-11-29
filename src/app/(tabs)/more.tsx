@@ -1,6 +1,6 @@
 import {Picker} from '@react-native-picker/picker'
 
-import { Container, Text } from '../../components/Themed'
+import { Container, Text } from '../../styles/ThemedComponents'
 import { usePlayer } from '../../contexts/Player'
 
 export default function MoreScreen() {

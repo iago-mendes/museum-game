@@ -2,7 +2,7 @@ import { Image } from 'expo-image'
 import { Button } from 'react-native'
 import { router } from 'expo-router'
 
-import { Container, Text } from '../../../components/Themed'
+import { Container, Text } from '../../../styles/ThemedComponents'
 import { usePicture } from '../../../contexts/Picture'
 
 export default function ScannerViewerScreen() {

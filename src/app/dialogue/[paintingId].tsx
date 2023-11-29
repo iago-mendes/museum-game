@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocalSearchParams } from 'expo-router'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 
-import { Container, Text, View } from '../../components/Themed'
+import { Container, Text, View } from '../../styles/ThemedComponents'
 import { dialoguesRecord } from '../../db/dialogues'
 import { DialogueNode, DialogueOption, isPaintingId } from '../../db/types'
 import { usePlayer } from '../../contexts/Player'
+import { fontSizes } from '../../styles/theme'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
@@ -143,6 +144,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   optionPrompt: {
-    fontSize: 20,
+    fontSize: fontSizes.large,
   }
 })
