@@ -6,7 +6,7 @@ import { Container, Text, View } from '../../styles/ThemedComponents'
 import { dialoguesRecord } from '../../db/dialogues'
 import { DialogueNode, DialogueOption, isPaintingId } from '../../db/types'
 import { usePlayer } from '../../contexts/Player'
-import { fontSizes } from '../../styles/theme'
+import { colors, fontSizes } from '../../styles/theme'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   nodeContainer: {
     width: '100%',
     marginBottom: 10,
-    backgroundColor: '#ffffff18',
+    backgroundColor: colors.highlight,
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -138,12 +138,14 @@ const styles = StyleSheet.create({
   },
   optionButton: {
     width: '75%',
-    backgroundColor: '#0a0a58',
+    backgroundColor: colors.primary,
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 10,
   },
   optionPrompt: {
     fontSize: fontSizes.large,
+    color: colors.background,
+    fontWeight: 'bold',
   }
 })
