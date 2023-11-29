@@ -5,7 +5,8 @@ import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 import { Container, Text, View } from '../../styles/ThemedComponents'
 import { dialoguesRecord } from '../../db/dialogues'
-import { DialogueNode, DialogueOption, isPaintingId } from '../../db/types'
+import { isPaintingId } from '../../db/paintingIds'
+import { DialogueNode, DialogueOption } from '../../db/dialogues'
 import { usePlayer } from '../../contexts/Player'
 import { colors, fontSizes } from '../../styles/theme'
 

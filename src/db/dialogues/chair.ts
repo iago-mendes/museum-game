@@ -1,4 +1,4 @@
-import { PaintingDialogues, DialogueNode } from '../types'
+import { PaintingDialogues, DialogueNode } from '.'
 
 const sitOptionDialogue: DialogueNode = {
 	speaker: 'Player 2',

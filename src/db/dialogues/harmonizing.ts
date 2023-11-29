@@ -1,4 +1,4 @@
-import { PaintingDialogues } from '../types'
+import { PaintingDialogues } from '.'
 
 export const harmonizingDialogues: PaintingDialogues = {
 	player1: {
