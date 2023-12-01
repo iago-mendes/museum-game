@@ -9,6 +9,7 @@ import { isPaintingId } from '../../db/paintingIds'
 import { DialogueNode, DialogueOption } from '../../db/dialogues'
 import { usePlayer } from '../../contexts/Player'
 import { colors, fontSizes } from '../../styles/theme'
+import { parseText } from '../../utils/parseText'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
@@ -103,7 +104,11 @@ export default function DialogueScreen() {
           {shownDialogue.map((item, index) => (
             <View key={index} style={styles.nodeContainer}>
               <Text>{item.speaker}:</Text>
-              <Text>{item.text}</Text>
+              <Text>
+              {parseText(item.text).map(({text, bold}, index) => (
+                <Text style={bold ? styles.boldText : {}} key={index}>{text}</Text>
+              ))}
+              </Text>
             </View>
           ))}
           <View style={styles.optionsContainer}>
@@ -184,5 +189,10 @@ const styles = StyleSheet.create({
     color: colors.background,
     fontWeight: 'bold',
     fontSize: fontSizes.large,
+  },
+  boldText: {
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',
   },
 })
