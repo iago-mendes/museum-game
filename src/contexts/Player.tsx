@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState, useContext, useEffect } from 'react'
-import { PaintingId } from '../db/types'
+import { PaintingId } from '../db//paintingIds'
 
 type Player = 'player1' | 'player2' | 'none'
 
@@ -8,6 +8,8 @@ type PlayerContextType = {
 	updatePlayer: (value: string | null) => void
 	unlockedPaintings: Set<PaintingId>
 	addUnlockedPainting: (id: PaintingId) => void
+	addImportantInfo: (id: PaintingId, info: string[]) => void
+	importantInfo: Map<PaintingId, string[]>
 }
 
 export const PlayerContext = createContext({} as PlayerContextType)
@@ -20,6 +22,7 @@ export function usePlayer() {
 export function PlayerProvider({children}: {children: ReactNode}) {
 	const [player, setPlayer] = useState<Player>('none')
 	const [unlockedPaintings, setUnlockedPaintings] = useState<Set<PaintingId>>(new Set())
+	const [importantInfo, setImportantInfo] = useState<Map<PaintingId, string[]>>(new Map())
 
 	useEffect(() => {
 		setUnlockedPaintings(new Set())
@@ -38,6 +41,14 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 		setUnlockedPaintings(set => set.add(id))
 	}
 
+	function addImportantInfo(id: PaintingId, info: string[]) {
+		setImportantInfo(map => new Map(map.set(id, info)))
+	}
+
+	function getImportantInfo(id: PaintingId) {
+		return importantInfo.get(id)
+	}
+
 	return (
 		<PlayerContext.Provider
 			value={{
@@ -45,6 +56,8 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 				updatePlayer,
 				unlockedPaintings,
 				addUnlockedPainting,
+				addImportantInfo,
+				importantInfo,
 			}}
 		>
 			{children}

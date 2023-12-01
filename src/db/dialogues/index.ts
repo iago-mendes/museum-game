@@ -14,6 +14,7 @@ export type DialogueNode = {
 	next?: DialogueNode
 	newUnlockedPainting?: PaintingId
 	options?: DialogueOption[]
+	importantInfo?: string[]
 }
 
 export type DialogueOption = {

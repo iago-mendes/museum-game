@@ -14,7 +14,11 @@ export const harmonizingDialogues: PaintingDialogues = {
 			next: {
 				speaker: 'Man 2',
 				text: 'Jake, could you just sing the second part a little bit higher… greatly appreciated.',
-				newUnlockedPainting: 'chair'
+				newUnlockedPainting: 'chair',
+				importantInfo: [
+					'something important',
+					'something else',
+				]
 			}
 		}
 	}

@@ -7,6 +7,6 @@ const paintingIds = [
 
 export type PaintingId = typeof paintingIds[number]
 
-export function isPaintingId(id: string): id is PaintingId {
+export function isPaintingId(id: string | undefined): id is PaintingId {
 	return typeof id === 'string' && paintingIds.includes(id as PaintingId);
 }

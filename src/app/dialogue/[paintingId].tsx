@@ -15,7 +15,7 @@ export default function DialogueScreen() {
   const [paintingId] = useState(params.paintingId)
   const scrollViewRef = useRef<ScrollView>(null)
 
-  const {player, unlockedPaintings, addUnlockedPainting} = usePlayer()
+  const {player, unlockedPaintings, addUnlockedPainting, addImportantInfo} = usePlayer()
 
   const [dialogue, setDialogue] = useState<DialogueNode | undefined>(undefined)
   const [shownDialogue, setShownDialogue] = useState<DialogueNode[]>([])
@@ -46,13 +46,16 @@ export default function DialogueScreen() {
   }, [dialogue, showNextDialogue])
 
   function addNextDialogue() {
-    console.log(dialogue)
-    if (!dialogue) {
+    if (!isPaintingId(paintingId) || !dialogue) {
       return
     }
 
     if (dialogue.newUnlockedPainting) {
       addUnlockedPainting(dialogue.newUnlockedPainting)
+    }
+
+    if (dialogue.importantInfo) {
+      addImportantInfo(paintingId, dialogue.importantInfo)
     }
 
     setShownDialogue(shownDialogue => !dialogue ? shownDialogue : [...shownDialogue, dialogue])
