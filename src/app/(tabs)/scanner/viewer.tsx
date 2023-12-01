@@ -6,7 +6,7 @@ import { Container, Text } from '../../../styles/ThemedComponents'
 import { usePicture } from '../../../contexts/Picture'
 
 export default function ScannerViewerScreen() {
-  const imageWidth = 350
+  const imageWidth = 250
   
   const {picture} = usePicture()
 
@@ -23,8 +23,10 @@ export default function ScannerViewerScreen() {
         source={picture.uri}
         transition={1000}
       />
-      <Button onPress={() => router.push('/dialogue/harmonizing')} title="Go to harmonizing" />
-      <Button onPress={() => router.push('/dialogue/chair')} title="Go to chair" />
+      <Button onPress={() => router.push('/dialogue/momAndDad')} title="The Plough and The Song" />
+      <Button onPress={() => router.push('/dialogue/harmonizing')} title="Harmonizing" />
+      <Button onPress={() => router.push('/dialogue/prodigalSon')} title="The Prodigal Son" />
+      <Button onPress={() => router.push('/dialogue/chair')} title="Do you want... - Bench" />
     </Container>
   )
 }

@@ -2,7 +2,7 @@ import { PaintingDialogues, DialogueNode } from '.'
 
 const sitOptionDialogue: DialogueNode = {
 	speaker: 'Player 2',
-	text: '*feels at peace*',
+	text: '*Feels at peace*',
 	next: {
 		speaker: 'Player 2',
 		text: 'This is what Bob must have felt after bickering with so many people.',
@@ -20,7 +20,7 @@ const sitOptionDialogue: DialogueNode = {
 						text: 'Well I want to talk to you. Where is the guy that was just here?',
 						next: {
 							speaker: 'Chair',
-							text: `Oh him? He was super stressed out about a “problem set due at 5PM”. Looked real dejected, but quickly declared real loudly that he'll go to VENICE to get a breather.`,
+							text: `Oh him? He was super stressed out about a “problem set due at 5PM”. Looked real dejected, but quickly declared real loudly that he'll go to <<VENICE>> to get a breather.`,
 							next: {
 								speaker: 'Player 2',
 								text: '... Venice it is.'
@@ -56,7 +56,7 @@ export const chairDialogues: PaintingDialogues = {
 				prompt: 'Stand',
 				dialogue: {
 					speaker: 'Player 2',
-					text: '*admires the architectural beauty of the chair*',
+					text: '*Admires the architectural beauty of the chair*',
 					next: {
 						speaker: 'Player 2',
 						text: 'A simple structure, yet so many complexities!',
