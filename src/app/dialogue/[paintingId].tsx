@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocalSearchParams } from 'expo-router'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { router } from 'expo-router'
 
 import { Container, Text, View } from '../../styles/ThemedComponents'
 import { dialoguesRecord } from '../../db/dialogues'
@@ -23,6 +24,7 @@ export default function DialogueScreen() {
   const [shownOptions, setShownOptions] = useState<DialogueOption[]>([])
   const [showNextButton, setShowNextButton] = useState(true)
   const [showNextDialogue, setShowNextDialogue] = useState(true)
+  const [showExitButton, setShowExitButton] = useState(false)
 
   useEffect(() => {
     if (!paintingId || !isPaintingId(paintingId) || player == 'none') {
@@ -45,6 +47,21 @@ export default function DialogueScreen() {
       addNextDialogue()
     }
   }, [dialogue, showNextDialogue])
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null
+    if (!showNextButton && shownOptions.length == 0) {
+      timeoutId = setTimeout(() => setShowExitButton(true), 1000)
+    } else {
+      timeoutId = setTimeout(() => setShowExitButton(false), 1000)
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
+  }, [dialogue, showNextButton, shownOptions])
 
   function addNextDialogue() {
     if (!isPaintingId(paintingId) || !dialogue) {
@@ -121,9 +138,15 @@ export default function DialogueScreen() {
         </ScrollView>
       </View>
       {showNextButton && (
-        <TouchableOpacity onPress={() => setShowNextDialogue(true)} style={styles.nextButton}>
-          <Text style={styles.nextContent}>Next</Text>
-          <FontAwesome name="arrow-right" style={styles.nextContent} />
+        <TouchableOpacity onPress={() => setShowNextDialogue(true)} style={styles.bottomButton}>
+          <Text style={styles.bottomButtonContent}>Next</Text>
+          <FontAwesome name="arrow-right" style={styles.bottomButtonContent} />
+        </TouchableOpacity>
+      )}
+      {showExitButton && (
+        <TouchableOpacity onPress={() => router.push('/(tabs)/')} style={styles.bottomButton}>
+          <Text style={styles.bottomButtonContent}>Return to map</Text>
+          <FontAwesome name="arrow-right" style={styles.bottomButtonContent} />
         </TouchableOpacity>
       )}
     </Container>
@@ -174,7 +197,7 @@ const styles = StyleSheet.create({
     color: colors.background,
     fontWeight: 'bold',
   },
-  nextButton: {
+  bottomButton: {
     backgroundColor: colors.primary,
     flexDirection: 'row',
     alignItems: 'center',
@@ -185,7 +208,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginTop: 10,
   },
-  nextContent: {
+  bottomButtonContent: {
     color: colors.background,
     fontWeight: 'bold',
     fontSize: fontSizes.large,
