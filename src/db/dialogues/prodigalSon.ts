@@ -29,7 +29,9 @@ export const prodigalSon: PaintingDialogues = {
 								next: {
 									speaker: "Player 1",
 									text: "Appreciate it man. Take care of yourself. And put on some clothes.",
-									
+									importantInfo: [
+										'Bob was obsessed with MONEY!'
+									]
 								}
 							}
 						}

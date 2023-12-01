@@ -23,7 +23,10 @@ const sitOptionDialogue: DialogueNode = {
 							text: `Oh him? He was super stressed out about a “problem set due at 5PM”. Looked real dejected, but quickly declared real loudly that he'll go to <<VENICE>> to get a breather.`,
 							next: {
 								speaker: 'Player 2',
-								text: '... Venice it is.'
+								text: '... Venice it is.',
+								importantInfo: [
+									'Bob went to VENICE.'
+								]
 							}
 						}
 					}
