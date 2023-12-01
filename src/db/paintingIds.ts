@@ -3,6 +3,8 @@ const paintingIds = [
 	'prodigalSon',
 	'harmonizing',
 	'chair',
+	'money',
+	'venice',
 ] as const
 
 export type PaintingId = typeof paintingIds[number]

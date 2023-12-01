@@ -27,6 +27,8 @@ export default function ScannerViewerScreen() {
       <Button onPress={() => router.push('/dialogue/harmonizing')} title="Harmonizing" />
       <Button onPress={() => router.push('/dialogue/prodigalSon')} title="The Prodigal Son" />
       <Button onPress={() => router.push('/dialogue/chair')} title="Do you want... - Bench" />
+      <Button onPress={() => router.push('/dialogue/money')} title="Is it Real?" />
+      <Button onPress={() => router.push('/dialogue/venice')} title="View of Venice" />
     </Container>
   )
 }

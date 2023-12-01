@@ -2,7 +2,9 @@ import { PaintingId } from '../paintingIds'
 import { chairDialogues } from './chair'
 import { harmonizingDialogues } from './harmonizing'
 import { momAndDad } from './momAndDad'
+import { moneyDialogues } from './money'
 import { prodigalSon } from './prodigalSon'
+import { veniceDialogues } from './venice'
 
 export type PaintingDialogues = {
 	locked?: DialogueNode
@@ -30,4 +32,6 @@ export const dialoguesRecord: Record<PaintingId, PaintingDialogues> = {
 	'harmonizing': harmonizingDialogues,
 	'prodigalSon': prodigalSon,
 	'chair': chairDialogues,
+	'money': moneyDialogues,
+	'venice': veniceDialogues
 }

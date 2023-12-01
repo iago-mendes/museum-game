@@ -11,7 +11,10 @@ export const levels: Levels = {
 		'prodigalSon',
 		'chair'
 	],
-	level2: [],
+	level2: [
+		'money',
+		'venice',
+	],
 	level3: [],
 	final: []
 }

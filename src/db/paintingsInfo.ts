@@ -22,4 +22,12 @@ export const paintingsInfo: Record<PaintingId, PaintingInfo> = {
 		title: 'Do you want us here or not (MHR) - Bench',
 		date: '2021'
 	},
+	money: {
+		title: 'Is it Real?',
+		date: '1890'
+	},
+	venice: {
+		title: 'View of Venice',
+		date: '1841'
+	}
 }
