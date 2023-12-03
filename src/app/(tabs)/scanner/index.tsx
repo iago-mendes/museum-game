@@ -9,8 +9,6 @@ import { useState } from 'react'
 import { isPaintingId } from '../../../db/paintingIds'
 
 export default function ScannerScreen() {
-  let camera: Camera | null;
-
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const isFocused = useIsFocused();
@@ -64,8 +62,6 @@ export default function ScannerScreen() {
           style={styles.camera}
           type={CameraType.back}
           onMountError={handleCameraError}
-          ref={(ref) => (camera = ref)}
-          ratio="1:1"
           barCodeScannerSettings={{
             barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
           }}
@@ -83,7 +79,7 @@ export default function ScannerScreen() {
 }
 
 const cameraWidth = 350 // used in a 4:3 ratio
-const cameraRatio = 16/9; // 4:3
+const cameraRatio = 1; // 4:3
 const styles = StyleSheet.create({
   cameraContainer: {
     width: cameraWidth,
