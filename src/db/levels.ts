@@ -1,20 +1,33 @@
 import { PaintingId } from './paintingIds'
 
-type Levels = {
-	[key: string]: PaintingId[]
+export type Level = {
+	title: string
+	paintings: PaintingId[]
+	password?: {
+		player1: string
+		player2: string
+	}
 }
 
-export const levels: Levels = {
-	level1: [
-		'momAndDad',
-		'harmonizing',
-		'prodigalSon',
-		'chair'
-	],
-	level2: [
-		'money',
-		'venice',
-	],
-	level3: [],
-	final: []
-}
+export const levels: Level[] = [
+	{
+		title: '20th & 21st century',
+		paintings: [
+			'momAndDad',
+			'harmonizing',
+			'prodigalSon',
+			'chair'
+		]
+	},
+	{
+		title: '19th century',
+		paintings: [
+			'money',
+			'venice',
+		],
+		password: {
+			player1: 'venice',
+			player2: 'money'
+		}
+	}
+]
