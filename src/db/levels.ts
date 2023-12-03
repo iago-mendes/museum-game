@@ -11,7 +11,7 @@ export type Level = {
 
 export const levels: Level[] = [
 	{
-		title: '20th & 21st century',
+		title: 'Level 1',
 		paintings: [
 			'momAndDad',
 			'harmonizing',
@@ -20,7 +20,7 @@ export const levels: Level[] = [
 		]
 	},
 	{
-		title: '19th century',
+		title: 'Level 2',
 		paintings: [
 			'money',
 			'venice',
@@ -28,6 +28,24 @@ export const levels: Level[] = [
 		password: {
 			player1: 'venice',
 			player2: 'money'
+		}
+	},
+	{
+		title: 'Level 3',
+		paintings: [
+		],
+		password: {
+			player1: 'tmp1',
+			player2: 'tmp2'
+		}
+	},
+	{
+		title: 'Final',
+		paintings: [
+		],
+		password: {
+			player1: 'tmp1',
+			player2: 'tmp2'
 		}
 	}
 ]
