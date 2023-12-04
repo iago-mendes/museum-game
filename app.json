@@ -37,6 +37,12 @@
         {
           "cameraPermission": "Allow Museum Game to access your camera."
         }
+      ],
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Allow Museum Game to access your camera."
+        }
       ]
     ],
     "experiments": {
