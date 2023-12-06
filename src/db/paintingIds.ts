@@ -5,6 +5,13 @@ const paintingIds = [
 	'chair',
 	'money',
 	'venice',
+	'lady',
+	'mug',
+	'stillLife',
+	'sebastian',
+	'dogLion',
+	'cleopatra',
+	'michael'
 ] as const
 
 export type PaintingId = typeof paintingIds[number]
