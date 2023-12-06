@@ -66,7 +66,7 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 			}}
 		>
 			{player == 'none' ? (
-				<SelectPlayer player={player} updatePlayer={updatePlayer} />
+				<SelectPlayer updatePlayer={updatePlayer} />
 			) : (
 				children
 			)}
