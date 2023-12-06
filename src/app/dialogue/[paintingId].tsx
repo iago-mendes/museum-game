@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocalSearchParams } from 'expo-router'
+import { useLocalSearchParams, useNavigation } from 'expo-router'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { router } from 'expo-router'
@@ -11,11 +11,13 @@ import { DialogueNode, DialogueOption } from '../../db/dialogues'
 import { usePlayer } from '../../contexts/Player'
 import { colors, fontSizes } from '../../styles/theme'
 import { parseText } from '../../utils/parseText'
+import { paintingsInfo } from '../../db/paintingsInfo'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
   const [paintingId] = useState(params.paintingId)
   const scrollViewRef = useRef<ScrollView>(null)
+  const navigation = useNavigation()
 
   const {player, unlockedPaintings, addUnlockedPainting, addImportantInfo} = usePlayer()
 
@@ -32,6 +34,8 @@ export default function DialogueScreen() {
       setShownDialogue([])
       return
     }
+
+    navigation.setOptions({title: paintingsInfo[paintingId].title})
 
     const dialogueOptions = dialoguesRecord[paintingId]
 
