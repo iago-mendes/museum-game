@@ -21,11 +21,16 @@ export function LevelView({level}: LevelProps) {
 	useEffect(() => {
 		setUnlocked(!level.password)
 		setGivenPassword('')
-		setAllowSubmitPassword(true)
+		setAllowSubmitPassword(false)
 	}, [player])
 
+	function updateGivenPassword(input: string) {
+		setGivenPassword(input)
+		setAllowSubmitPassword(input.length > 0)
+	}
+
 	function checkPassword() {
-		if (player == 'none' || !level.password) {
+		if (player == 'none' || !level.password || !allowSubmitPassword) {
 			return
 		}
 
@@ -54,13 +59,13 @@ export function LevelView({level}: LevelProps) {
 				<View style={styles.passwordContainer}>
 					<TextInput
 						style={styles.passwordInput}
-						onChangeText={input => setGivenPassword(input)}
+						onChangeText={input => updateGivenPassword(input)}
 						onBlur={() => checkPassword()}
 						value={givenPassword}
 						placeholder="Level password"
 						placeholderTextColor={colors.text+'40'}
 					/>
-					<TouchableOpacity onPress={() => checkPassword()} disabled={!allowSubmitPassword} style={styles.passwordButton}>
+					<TouchableOpacity onPress={() => checkPassword()} style={styles.passwordButton}>
 						<FontAwesome name="arrow-right" style={styles.passwordButtonIcon} />
 					</TouchableOpacity>
 				</View>
