@@ -4,10 +4,10 @@ import { useIsFocused } from '@react-navigation/native'
 import { BarCodeScanner } from "expo-barcode-scanner"
 import { router } from 'expo-router'
 
-import { Container } from '../../../styles/ThemedComponents'
+import { Container } from '../../styles/ThemedComponents'
 import { useState } from 'react'
-import { isPaintingId } from '../../../db/paintingIds'
-import { ButtonWithIcon } from '../../../components/ButtonWIthIcon'
+import { isPaintingId } from '../../db/paintingIds'
+import { ButtonWithIcon } from '../../components/ButtonWIthIcon'
 
 export default function ScannerScreen() {
   const [permission, requestPermission] = Camera.useCameraPermissions();
