@@ -6,15 +6,16 @@ import { colors, fontSizes } from "../styles/theme";
 
 type ButtonWithArrowProps = {
 	text: string
+  icon: string
 	onPress: () => void
 	style?: StyleProp<ViewStyle>
 }
 
-export function ButtonWithArrow({text, onPress, style}: ButtonWithArrowProps) {
+export function ButtonWithIcon({text, icon, onPress, style}: ButtonWithArrowProps) {
 	return (
 		<TouchableOpacity onPress={() => onPress()} style={[styles.container, style]}>
 			<Text style={styles.content}>{text}</Text>
-			<FontAwesome name="arrow-right" style={styles.content} />
+			<FontAwesome name={icon as any} style={styles.content} />
 		</TouchableOpacity>
 	)
 }

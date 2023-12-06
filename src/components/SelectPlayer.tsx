@@ -5,7 +5,7 @@ import { Player } from '../contexts/Player'
 import { StyleSheet } from 'react-native'
 import { colors, fontSizes } from '../styles/theme'
 import { useState } from 'react'
-import { ButtonWithArrow } from './ButtonWIthArrow'
+import { ButtonWithIcon } from './ButtonWIthIcon'
 
 type SelectPlayerProps = {
 	updatePlayer: (value: string | null) => void
@@ -34,7 +34,12 @@ export default function SelectPlayer({updatePlayer}: SelectPlayerProps) {
       </Picker>
 
 			{tmpPlayer != 'none' && (
-				<ButtonWithArrow text="Continue" onPress={() => handleContinue()} style={styles.button} />
+				<ButtonWithIcon
+					text="Continue"
+					icon="arrow-right"
+					onPress={() => handleContinue()}
+					style={styles.button}
+				/>
 			)}
     </Container>
   )
