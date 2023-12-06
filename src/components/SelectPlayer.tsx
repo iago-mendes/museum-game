@@ -2,7 +2,7 @@ import {Picker} from '@react-native-picker/picker'
 
 import { Container, Text } from '../styles/ThemedComponents'
 import { Player } from '../contexts/Player'
-import { Button, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { colors, fontSizes } from '../styles/theme'
 import { useState } from 'react'
 import { ButtonWithArrow } from './ButtonWIthArrow'
