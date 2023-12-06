@@ -1,10 +1,7 @@
 import { ScrollView, StyleSheet } from 'react-native'
 
 import { levels } from '../../db/levels'
-import { paintingsInfo } from '../../db/paintingsInfo'
-import { Container, Text, View } from '../../styles/ThemedComponents'
-import { colors, fontSizes } from '../../styles/theme'
-import { usePlayer } from '../../contexts/Player'
+import { Container } from '../../styles/ThemedComponents'
 import { LevelView } from '../../components/LevelView'
 
 export default function MapScreen() {

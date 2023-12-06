@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { router } from 'expo-router'
 
 import { Container, Text, View } from '../../styles/ThemedComponents'
@@ -12,6 +11,7 @@ import { usePlayer } from '../../contexts/Player'
 import { colors, fontSizes } from '../../styles/theme'
 import { parseText } from '../../utils/parseText'
 import { paintingsInfo } from '../../db/paintingsInfo'
+import { ButtonWithIcon } from '../../components/ButtonWIthIcon'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
@@ -142,16 +142,20 @@ export default function DialogueScreen() {
         </ScrollView>
       </View>
       {showNextButton && (
-        <TouchableOpacity onPress={() => setShowNextDialogue(true)} style={styles.bottomButton}>
-          <Text style={styles.bottomButtonContent}>Next</Text>
-          <FontAwesome name="arrow-right" style={styles.bottomButtonContent} />
-        </TouchableOpacity>
+        <ButtonWithIcon
+          text="Next"
+          icon="arrow-right"
+          onPress={() => setShowNextDialogue(true)}
+          style={styles.bottomButton}
+        />
       )}
       {showExitButton && (
-        <TouchableOpacity onPress={() => router.push('/(tabs)/')} style={styles.bottomButton}>
-          <Text style={styles.bottomButtonContent}>Return to map</Text>
-          <FontAwesome name="arrow-right" style={styles.bottomButtonContent} />
-        </TouchableOpacity>
+        <ButtonWithIcon
+          text="Return to map"
+          icon="arrow-right"
+          onPress={() => router.push('/(tabs)/')}
+          style={styles.bottomButton}
+        />
       )}
     </Container>
   )
@@ -202,20 +206,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   bottomButton: {
-    backgroundColor: colors.primary,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 10,
     alignSelf: 'flex-end',
     marginTop: 10,
-  },
-  bottomButtonContent: {
-    color: colors.background,
-    fontWeight: 'bold',
-    fontSize: fontSizes.large,
   },
   boldText: {
     fontWeight: 'bold',
