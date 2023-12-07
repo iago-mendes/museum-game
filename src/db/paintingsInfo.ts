@@ -29,5 +29,9 @@ export const paintingsInfo: Record<PaintingId, PaintingInfo> = {
 	venice: {
 		title: 'View of Venice',
 		date: '1841'
+	},
+	incorrect: {
+		title: 'The place where none shall go...yet',
+		date: 'not applicable'
 	}
 }

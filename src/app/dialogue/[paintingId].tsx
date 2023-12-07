@@ -19,7 +19,7 @@ export default function DialogueScreen() {
   const scrollViewRef = useRef<ScrollView>(null)
   const navigation = useNavigation()
 
-  const {player, unlockedPaintings, addUnlockedPainting, addImportantInfo} = usePlayer()
+  const {player, unlockedPaintings, addUnlockedPainting, visitedPaintings, addVisitedPainting, addImportantInfo} = usePlayer()
 
   const [dialogue, setDialogue] = useState<DialogueNode | undefined>(undefined)
   const [shownDialogue, setShownDialogue] = useState<DialogueNode[]>([])
@@ -35,14 +35,20 @@ export default function DialogueScreen() {
       return
     }
 
+    //if (paintingId == 'incorrect') return
+
     navigation.setOptions({title: paintingsInfo[paintingId].title})
 
     const dialogueOptions = dialoguesRecord[paintingId]
 
-    if (!dialogueOptions.locked || unlockedPaintings.has(paintingId)) {
-      setDialogue(dialogueOptions[player])
+    if (visitedPaintings.has(paintingId)){
+      setDialogue(dialogueOptions.visited)
     } else {
-      setDialogue(dialogueOptions.locked)
+      if (!dialogueOptions.locked || unlockedPaintings.has(paintingId)) {
+        setDialogue(dialogueOptions[player])
+      } else {
+        setDialogue(dialogueOptions.locked)
+      }
     }
   }, [paintingId, player])
 
@@ -70,6 +76,10 @@ export default function DialogueScreen() {
   function addNextDialogue() {
     if (!isPaintingId(paintingId) || !dialogue) {
       return
+    }
+
+    if(dialogue.newVisitedPainting){
+      addVisitedPainting(dialogue.newVisitedPainting)
     }
 
     if (dialogue.newUnlockedPainting) {
@@ -105,6 +115,14 @@ export default function DialogueScreen() {
     setShowNextDialogue(true)
     setShownOptions([])
   }
+
+/** 
+  if (paintingId == 'incorrect') return (
+    <Container>
+    <Text>Going here would violate the Laws of Space and Time!</Text>
+  </Container>
+  )
+*/
 
   if (!paintingId || !isPaintingId(paintingId)) return (
     <Container>
