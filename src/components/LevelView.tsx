@@ -36,7 +36,7 @@ export function LevelView({level}: LevelProps) {
 
 		setAllowSubmitPassword(false)
 
-		if (givenPassword.toLowerCase() == level.password[player].toLowerCase()) {
+		if (givenPassword.trim().toLowerCase() == level.password[player].toLowerCase()) {
 			setUnlocked(true)
 			Alert.alert("Congrats! You got the right password!")
 
