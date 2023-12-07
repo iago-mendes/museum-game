@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 import { Text, View } from '../styles/ThemedComponents'
-import { ButtonWithIcon } from './ButtonWIthIcon'
 import { colors, fontSizes } from '../styles/theme'
 import { ParsedText } from './ParsedText'
 
@@ -31,7 +30,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSizes.large,
     fontWeight: 'bold',
-    // marginBottom: 5,
   },
   list: {
     paddingLeft: 20,
