@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState, useContext, useEffect } from 'react'
 import { PaintingId } from '../db//paintingIds'
 import SelectPlayer from '../components/SelectPlayer'
+import { Introduction } from '../components/Introduction'
 
 export type Player = 'player1' | 'player2' | 'none'
 
@@ -24,7 +25,9 @@ export function usePlayer() {
 }
 
 export function PlayerProvider({children}: {children: ReactNode}) {
+	const [showIntroduction, setShowIntroduction] = useState(true)
 	const [player, setPlayer] = useState<Player>('none')
+	
 	const [unlockedPaintings, setUnlockedPaintings] = useState<Set<PaintingId>>(new Set())
 	const [visitedPaintings, setVisitedPaintings] = useState<Set<PaintingId>>(new Set())
 	const [importantInfo, setImportantInfo] = useState<Map<PaintingId, string[]>>(new Map())
@@ -58,12 +61,12 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 		setImportantInfo(map => new Map(map.set(id, info)))
 	}
 
-
 	function reset() {
 		setPlayer('none')
 		setUnlockedPaintings(new Set())
 		setImportantInfo(new Map())
 		setVisitedPaintings(new Set())
+		setShowIntroduction(true)
 	}
 
 	return (
@@ -80,7 +83,9 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 				reset
 			}}
 		>
-			{player == 'none' ? (
+			{showIntroduction ? (
+				<Introduction onExit={() => setShowIntroduction(false)} />
+			) : player == 'none' ? (
 				<SelectPlayer updatePlayer={updatePlayer} />
 			) : (
 				children
