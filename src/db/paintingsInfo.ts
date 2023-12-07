@@ -29,7 +29,7 @@ export const paintingsInfo: Record<PaintingId, PaintingInfo> = {
 	venice: {
 		title: 'View of Venice',
 		date: '1841'
-	}
+	},
 	mug: {
 		title: 'Bear-shaped Drinking Vessel',
 		date: '1710-50'
