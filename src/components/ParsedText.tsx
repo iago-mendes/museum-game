@@ -9,7 +9,7 @@ type ParsedTextProps = {
 
 export function ParsedText({text}: ParsedTextProps) {
 	return (
-		<Text>
+		<Text style={styles.textContainer}>
 			{parseText(text).map(({text, bold}, index) => (
 				<Text style={bold ? styles.bold : {}} key={index}>{text}</Text>
 			))}
@@ -18,6 +18,9 @@ export function ParsedText({text}: ParsedTextProps) {
 }
 
 const styles = StyleSheet.create({
+	textContainer: {
+		textAlign: 'justify'
+	},
   bold: {
     fontWeight: 'bold',
     fontStyle: 'italic',

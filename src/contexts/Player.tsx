@@ -3,6 +3,7 @@ import { PaintingId } from '../db//paintingIds'
 import SelectPlayer from '../components/SelectPlayer'
 import { Introduction } from '../components/Introduction'
 import { Welcome } from '../components/Welcome'
+import { Mechanics } from '../components/Mechanics'
 
 export type Player = 'player1' | 'player2' | 'none'
 
@@ -28,6 +29,7 @@ export function usePlayer() {
 export function PlayerProvider({children}: {children: ReactNode}) {
 	const [showWelcome, setShowWelcome] = useState(true)
 	const [showIntroduction, setShowIntroduction] = useState(true)
+	const [showMechanics, setShowMechanics] = useState(true)
 	const [player, setPlayer] = useState<Player>('none')
 
 	const [unlockedPaintings, setUnlockedPaintings] = useState<Set<PaintingId>>(new Set())
@@ -66,6 +68,7 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 	function reset() {
 		setShowWelcome(true)
 		setShowIntroduction(true)
+		setShowMechanics(true)
 		setPlayer('none')
 		
 		setUnlockedPaintings(new Set())
@@ -91,6 +94,8 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 				<Welcome onStart={() => setShowWelcome(false)} />
 			) : showIntroduction ? (
 				<Introduction onExit={() => setShowIntroduction(false)} />
+			) : showMechanics ? (
+				<Mechanics onContinue={() => setShowMechanics(false)} />
 			) : player == 'none' ? (
 				<SelectPlayer updatePlayer={updatePlayer} />
 			) : (
