@@ -22,8 +22,8 @@ export function Welcome({onStart}: IntroductionProps) {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontFamily: 'Pacifico',
+    fontSize: 35,
     textAlign: 'center',
     marginHorizontal: 20,
     marginBottom: 50,
