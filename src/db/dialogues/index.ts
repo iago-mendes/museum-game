@@ -37,5 +37,159 @@ export const dialoguesRecord: Record<PaintingId, PaintingDialogues> = {
 	'chair': chairDialogues,
 	'money': moneyDialogues,
 	'venice': veniceDialogues,
-	'incorrect' : incorrectDialogues
+	'incorrect': incorrectDialogues,
+	lady: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	mug: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	stillLife: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	sebastian: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	dogLion: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	cleopatra: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	michael: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	}
 }
