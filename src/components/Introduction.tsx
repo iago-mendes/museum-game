@@ -68,7 +68,7 @@ export function Introduction({onExit}: IntroductionProps) {
         <ScrollView ref={scrollViewRef} style={styles.dialogueContainer}>
           {shownDialogue.map((item, index) => (
             <View key={index} style={styles.nodeContainer}>
-              <Text>{item.speaker}:</Text>
+              <Text style={styles.speaker}>{item.speaker}</Text>
               <Text>
                 {parseText(item.text).map(({text, bold}, index) => (
                   <Text style={bold ? styles.boldText : {}} key={index}>{text}</Text>
@@ -147,5 +147,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontStyle: 'italic',
     textDecorationLine: 'underline',
+  },
+  speaker: {
+    fontWeight: 'bold',
   },
 })
