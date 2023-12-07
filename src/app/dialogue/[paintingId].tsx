@@ -164,15 +164,15 @@ export default function DialogueScreen() {
           text="Next"
           icon="arrow-right"
           onPress={() => setShowNextDialogue(true)}
-          style={styles.bottomButton}
+          style={styles.nextButton}
         />
       )}
       {showExitButton && (
         <ButtonWithIcon
           text="Return to map"
-          icon="arrow-right"
+          icon="arrow-left"
           onPress={() => router.push('/(tabs)/')}
-          style={styles.bottomButton}
+          style={styles.exitButton}
         />
       )}
     </Container>
@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.highlight,
     borderRadius: 10,
+    marginBottom: 10,
   },
   dialogueContainer: {
     width: '100%',
@@ -223,9 +224,12 @@ const styles = StyleSheet.create({
     color: colors.background,
     fontWeight: 'bold',
   },
-  bottomButton: {
+  nextButton: {
     alignSelf: 'flex-end',
-    marginTop: 10,
+  },
+  exitButton: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row-reverse',
   },
   boldText: {
     fontWeight: 'bold',
