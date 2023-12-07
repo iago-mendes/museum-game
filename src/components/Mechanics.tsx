@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native'
 import { Container } from '../styles/ThemedComponents'
 import { colors, fontSizes } from '../styles/theme'
 import { ButtonWithIcon } from './ButtonWIthIcon'
-import { ParsedText } from './ParsedText'
 import { BulletList } from './BulletList'
 
 type MechanicsProps = {
@@ -59,37 +58,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: fontSizes.large,
-    fontWeight: 'bold',
-  },
-  dialogueWrapper: {
-    width: '100%',
-    height: '80%',
-    borderWidth: 2,
-    borderColor: colors.highlight,
-    borderRadius: 10,
-  },
-  dialogueContainer: {
-    width: '100%',
-    padding: 5,
-    paddingBottom: 20,
-  },
-  nodeContainer: {
-    width: '100%',
-    marginBottom: 10,
-    backgroundColor: colors.highlight,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-between',
-  },
-  leftButton: {
-    flexDirection: 'row-reverse',
-  },
-  speaker: {
     fontWeight: 'bold',
   },
   button: {
