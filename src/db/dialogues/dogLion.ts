@@ -1,5 +1,7 @@
 import { DialogueNode, PaintingDialogues } from '.'
 
+
+// C
 const standOption: DialogueNode = {
     speaker: 'Narrator',
     text: "You accept the way things are and stood your ground.",
@@ -100,6 +102,28 @@ const standOption: DialogueNode = {
     }
 }
 
+// A_2
+const rubOption_2: DialogueNode = {
+    speaker: 'Narrator',
+    text: "A good belly rub always help! Maybe if you call Korean Dog a good boy it’ll even wag its tail? And maybe even present you with Bob Doe, hopefully in one piece?",
+    next: {
+        speaker: 'Narrator',
+        text: "You gleefully skip towards Korean Dog. Before your other leg ever touches the ground, both entities bared its fangs and growled at you",
+        next: {
+            speaker: 'Player',
+            text: "Maybe that wasn’t a good idea.",
+            options: [
+                {
+                    key: 'C',
+                    prompt: 'Continues standing in silence',
+                    dialogue: standOption
+                }
+            ]
+        }
+    }
+}
+
+// B
 const getOutOption: DialogueNode = {
     speaker: 'Narrator',
     text: 'You sigh in defeat, and whipped out the Museum Device to punch in the codes to go back.',
@@ -141,8 +165,13 @@ const getOutOption: DialogueNode = {
                                                     text: "And so the hero of our story decided to stay.",
                                                     options: [
                                                         {
+                                                            key: 'A',
+                                                            prompt: 'Give Korean Dog a belly rub.',
+                                                            dialogue: rubOption_2
+                                                        },
+                                                        {
                                                             key: 'C',
-                                                            prompt: 'Continues standing in silence (Sort of your last option)',
+                                                            prompt: 'Continues standing in silence.',
                                                             dialogue: standOption
                                                         }
                                                     ]
@@ -161,6 +190,7 @@ const getOutOption: DialogueNode = {
 
     }
 
+// A
 const rubOption: DialogueNode = {
     speaker: 'Narrator',
     text: "A good belly rub always help! Maybe if you call Korean Dog a good boy it’ll even wag its tail? And maybe even present you with Bob Doe, hopefully in one piece?",
@@ -241,6 +271,7 @@ const uniqueDialogue: DialogueNode = {
 } 
 
 export const dogLionDialogues: PaintingDialogues = {
+    // locked: ,
 	player1: uniqueDialogue,
 	player2: uniqueDialogue
 }
