@@ -7,6 +7,7 @@ import { colors, fontSizes } from '../styles/theme'
 import { parseText } from '../utils/parseText'
 import { ButtonWithIcon } from './ButtonWIthIcon'
 import { introductionDialogue } from '../db/dialogues/introduction'
+import { ParsedText } from './ParsedText'
 
 type IntroductionProps = {
   onExit: () => void
@@ -69,11 +70,7 @@ export function Introduction({onExit}: IntroductionProps) {
           {shownDialogue.map((item, index) => (
             <View key={index} style={styles.nodeContainer}>
               <Text style={styles.speaker}>{item.speaker}</Text>
-              <Text>
-                {parseText(item.text).map(({text, bold}, index) => (
-                  <Text style={bold ? styles.boldText : {}} key={index}>{text}</Text>
-                ))}
-              </Text>
+              <ParsedText text={item.text} />
             </View>
           ))}
         </ScrollView>
@@ -142,11 +139,6 @@ const styles = StyleSheet.create({
   },
   leftButton: {
     flexDirection: 'row-reverse',
-  },
-  boldText: {
-    fontWeight: 'bold',
-    fontStyle: 'italic',
-    textDecorationLine: 'underline',
   },
   speaker: {
     fontWeight: 'bold',

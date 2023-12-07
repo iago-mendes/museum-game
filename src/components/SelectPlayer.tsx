@@ -6,6 +6,7 @@ import { StyleSheet } from 'react-native'
 import { colors, fontSizes } from '../styles/theme'
 import { useState } from 'react'
 import { ButtonWithIcon } from './ButtonWIthIcon'
+import { BulletList } from './BulletList'
 
 type SelectPlayerProps = {
 	updatePlayer: (value: string | null) => void
@@ -34,6 +35,15 @@ export default function SelectPlayer({updatePlayer}: SelectPlayerProps) {
 						<Picker.Item label="Player 2" value="player2" />
 				</Picker>
 			</View>
+
+			<BulletList
+				title="Character Perks and Traits"
+				list={[
+					'Bob Doe is an <<Econ Major>>, and a member of the archery club.',
+					'Player 1 Minors in <<Psychology>>, and is a member of the Pottery Co-op.',
+					'Player 2 is a 3-2 <<Engineering Major>>, minors in French, and is a member of Ocircus.'
+				]}
+			/>
 
 			<ButtonWithIcon
 				text="Continue"

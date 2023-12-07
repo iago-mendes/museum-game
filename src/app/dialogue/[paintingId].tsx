@@ -12,6 +12,7 @@ import { colors, fontSizes } from '../../styles/theme'
 import { parseText } from '../../utils/parseText'
 import { paintingsInfo } from '../../db/paintingsInfo'
 import { ButtonWithIcon } from '../../components/ButtonWIthIcon'
+import { ParsedText } from '../../components/ParsedText'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
@@ -143,11 +144,7 @@ export default function DialogueScreen() {
           {shownDialogue.map((item, index) => (
             <View key={index} style={styles.nodeContainer}>
               <Text style={styles.speaker}>{item.speaker}</Text>
-              <Text>
-              {parseText(item.text).map(({text, bold}, index) => (
-                <Text style={bold ? styles.boldText : {}} key={index}>{text}</Text>
-              ))}
-              </Text>
+              <ParsedText text={item.text} />
             </View>
           ))}
           <View style={styles.optionsContainer}>
@@ -230,11 +227,6 @@ const styles = StyleSheet.create({
   exitButton: {
     alignSelf: 'flex-start',
     flexDirection: 'row-reverse',
-  },
-  boldText: {
-    fontWeight: 'bold',
-    fontStyle: 'italic',
-    textDecorationLine: 'underline',
   },
   speaker: {
     fontWeight: 'bold',
