@@ -46,6 +46,7 @@ const uniqueDialogue: DialogueNode = {
 															speaker: "Men",
 															text: "No more of this. Back to singing guys! We have to perform at town hall this weekend! *shoos players away*",
 															newUnlockedPainting: 'chair',
+															newVisitedPainting: 'harmonizing',
 															importantInfo: [
 																'Bob was looking for good benches.',
 																'Someone who knows about construction should follow his path.'
@@ -67,6 +68,10 @@ const uniqueDialogue: DialogueNode = {
 }
 
 export const harmonizingDialogues: PaintingDialogues = {
+	visited: {
+		speaker: 'Narrator',
+		text: "You return to Philadelphia, see another version of yourself talking to the men, and promptly get the hell out of there before you create a time paradox or whatever."
+	},
 	player1: uniqueDialogue,
 	player2: uniqueDialogue
 }

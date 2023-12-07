@@ -5,6 +5,10 @@ export const prodigalSon: PaintingDialogues = {
 		speaker: 'Man',
 		text: '*wails and cries endlessly*'
 	},
+	visited: {
+		speaker: 'Player',
+		text: "...I am not going back there."
+	},
 	player1: {
 		speaker: 'Man',
 		text: '*wails and cries*',
@@ -29,6 +33,7 @@ export const prodigalSon: PaintingDialogues = {
 								next: {
 									speaker: "Player 1",
 									text: "Appreciate it man. Take care of yourself. And put on some clothes.",
+									newVisitedPainting: 'prodigalSon',
 									importantInfo: [
 										'Bob was obsessed with MONEY!'
 									]

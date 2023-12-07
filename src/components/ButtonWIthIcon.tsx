@@ -8,12 +8,17 @@ type ButtonWithArrowProps = {
 	text: string
   icon: string
 	onPress: () => void
+  disabled?: boolean
 	style?: StyleProp<ViewStyle>
 }
 
-export function ButtonWithIcon({text, icon, onPress, style}: ButtonWithArrowProps) {
+export function ButtonWithIcon({text, icon, onPress, disabled, style}: ButtonWithArrowProps) {
 	return (
-		<TouchableOpacity onPress={() => onPress()} style={[styles.container, style]}>
+		<TouchableOpacity
+      onPress={() => onPress()}
+      disabled={disabled}
+      style={[styles.container, disabled ? styles.disabled : {}, style]}
+    >
 			<Text style={styles.content}>{text}</Text>
 			<FontAwesome name={icon as any} style={styles.content} />
 		</TouchableOpacity>
@@ -34,5 +39,8 @@ const styles = StyleSheet.create({
     color: colors.background,
     fontWeight: 'bold',
     fontSize: fontSizes.large,
+  },
+  disabled: {
+    backgroundColor: colors.highlight,
   },
 })

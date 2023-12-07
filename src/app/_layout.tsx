@@ -4,7 +4,6 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 
-import { PictureProvider } from '../contexts/Picture';
 import { PlayerProvider } from '../contexts/Player';
 import { theme } from '../styles/theme';
 
@@ -18,7 +17,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
+    Pacifico: require('../../assets/fonts/Pacifico-Regular.ttf'),
     ...FontAwesome.font,
   });
 
@@ -44,12 +43,10 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={theme}>
       <PlayerProvider>
-        <PictureProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="dialogue/[paintingId]" />
-          </Stack>
-        </PictureProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="dialogue/[paintingId]" />
+        </Stack>
       </PlayerProvider>
     </ThemeProvider>
   );

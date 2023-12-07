@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocalSearchParams, useNavigation } from 'expo-router'
+import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import { router } from 'expo-router'
 
 import { Container, Text, View } from '../../styles/ThemedComponents'
-import { dialoguesRecord } from '../../db/dialogues'
 import { isPaintingId } from '../../db/paintingIds'
-import { DialogueNode, DialogueOption } from '../../db/dialogues'
+import { dialoguesRecord, DialogueNode, DialogueOption } from '../../db/dialogues'
 import { usePlayer } from '../../contexts/Player'
 import { colors, fontSizes } from '../../styles/theme'
-import { parseText } from '../../utils/parseText'
 import { paintingsInfo } from '../../db/paintingsInfo'
 import { ButtonWithIcon } from '../../components/ButtonWIthIcon'
+import { ParsedText } from '../../components/ParsedText'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
@@ -19,7 +17,7 @@ export default function DialogueScreen() {
   const scrollViewRef = useRef<ScrollView>(null)
   const navigation = useNavigation()
 
-  const {player, unlockedPaintings, addUnlockedPainting, addImportantInfo} = usePlayer()
+  const {player, unlockedPaintings, addUnlockedPainting, visitedPaintings, addVisitedPainting, addImportantInfo} = usePlayer()
 
   const [dialogue, setDialogue] = useState<DialogueNode | undefined>(undefined)
   const [shownDialogue, setShownDialogue] = useState<DialogueNode[]>([])
@@ -35,14 +33,20 @@ export default function DialogueScreen() {
       return
     }
 
+    //if (paintingId == 'incorrect') return
+
     navigation.setOptions({title: paintingsInfo[paintingId].title})
 
     const dialogueOptions = dialoguesRecord[paintingId]
 
-    if (!dialogueOptions.locked || unlockedPaintings.has(paintingId)) {
-      setDialogue(dialogueOptions[player])
+    if (visitedPaintings.has(paintingId)){
+      setDialogue(dialogueOptions.visited)
     } else {
-      setDialogue(dialogueOptions.locked)
+      if (!dialogueOptions.locked || unlockedPaintings.has(paintingId)) {
+        setDialogue(dialogueOptions[player])
+      } else {
+        setDialogue(dialogueOptions.locked)
+      }
     }
   }, [paintingId, player])
 
@@ -70,6 +74,10 @@ export default function DialogueScreen() {
   function addNextDialogue() {
     if (!isPaintingId(paintingId) || !dialogue) {
       return
+    }
+
+    if(dialogue.newVisitedPainting){
+      addVisitedPainting(dialogue.newVisitedPainting)
     }
 
     if (dialogue.newUnlockedPainting) {
@@ -106,6 +114,14 @@ export default function DialogueScreen() {
     setShownOptions([])
   }
 
+/** 
+  if (paintingId == 'incorrect') return (
+    <Container>
+    <Text>Going here would violate the Laws of Space and Time!</Text>
+  </Container>
+  )
+*/
+
   if (!paintingId || !isPaintingId(paintingId)) return (
     <Container>
       <Text>Error: invalid painting ID!</Text>
@@ -124,12 +140,8 @@ export default function DialogueScreen() {
         <ScrollView ref={scrollViewRef} style={styles.dialogueContainer}>
           {shownDialogue.map((item, index) => (
             <View key={index} style={styles.nodeContainer}>
-              <Text>{item.speaker}:</Text>
-              <Text>
-              {parseText(item.text).map(({text, bold}, index) => (
-                <Text style={bold ? styles.boldText : {}} key={index}>{text}</Text>
-              ))}
-              </Text>
+              <Text style={styles.speaker}>{item.speaker}</Text>
+              <ParsedText text={item.text} />
             </View>
           ))}
           <View style={styles.optionsContainer}>
@@ -146,15 +158,15 @@ export default function DialogueScreen() {
           text="Next"
           icon="arrow-right"
           onPress={() => setShowNextDialogue(true)}
-          style={styles.bottomButton}
+          style={styles.nextButton}
         />
       )}
       {showExitButton && (
         <ButtonWithIcon
           text="Return to map"
-          icon="arrow-right"
+          icon="arrow-left"
           onPress={() => router.push('/(tabs)/')}
-          style={styles.bottomButton}
+          style={styles.exitButton}
         />
       )}
     </Container>
@@ -173,6 +185,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.highlight,
     borderRadius: 10,
+    marginBottom: 10,
   },
   dialogueContainer: {
     width: '100%',
@@ -205,13 +218,14 @@ const styles = StyleSheet.create({
     color: colors.background,
     fontWeight: 'bold',
   },
-  bottomButton: {
+  nextButton: {
     alignSelf: 'flex-end',
-    marginTop: 10,
   },
-  boldText: {
+  exitButton: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row-reverse',
+  },
+  speaker: {
     fontWeight: 'bold',
-    fontStyle: 'italic',
-    textDecorationLine: 'underline',
   },
 })
