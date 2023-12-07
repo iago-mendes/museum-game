@@ -19,7 +19,7 @@ export function ParsedText({text}: ParsedTextProps) {
 
 const styles = StyleSheet.create({
 	textContainer: {
-		textAlign: 'justify'
+		textAlign: 'left'
 	},
   bold: {
     fontWeight: 'bold',
