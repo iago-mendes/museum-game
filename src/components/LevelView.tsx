@@ -7,6 +7,7 @@ import { Text, View } from "../styles/ThemedComponents"
 import { usePlayer } from "../contexts/Player"
 import { paintingsInfo } from "../db/paintingsInfo"
 import { colors, fontSizes } from "../styles/theme"
+import { BulletList } from "./BulletList"
 
 type LevelProps = {
 	level: Level
@@ -77,10 +78,8 @@ export function LevelView({level}: LevelProps) {
 							<Text>{paintingsInfo[id].date}</Text>
 							{importantInfo.get(id) && (
 								<View style={styles.importantInfoContainer}>
-										<Text style={styles.importantInfoTitle}>Important Info:</Text>
-										{importantInfo.get(id)?.map((info, index) => (
-											<Text key={index}>    - {info}</Text>
-										))}
+									<Text style={styles.importantInfoTitle}>Important Info</Text>
+									<BulletList list={importantInfo.get(id) ?? []} />
 								</View>
 							)}
 						</View>

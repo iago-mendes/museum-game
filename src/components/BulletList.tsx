@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
-import { Text, View } from '../styles/ThemedComponents'
+import { Text } from '../styles/ThemedComponents'
 import { colors, fontSizes } from '../styles/theme'
 import { ParsedText } from './ParsedText'
 
