@@ -5,9 +5,11 @@ import { momAndDad } from './momAndDad'
 import { moneyDialogues } from './money'
 import { prodigalSon } from './prodigalSon'
 import { veniceDialogues } from './venice'
+import { incorrectDialogues } from './incorrect'
 
 export type PaintingDialogues = {
 	locked?: DialogueNode
+	visited?: DialogueNode
 	player1: DialogueNode
 	player2: DialogueNode
 }
@@ -17,6 +19,7 @@ export type DialogueNode = {
 	speaker: string
 	next?: DialogueNode
 	newUnlockedPainting?: PaintingId
+	newVisitedPainting?: PaintingId
 	options?: DialogueOption[]
 	importantInfo?: string[]
 }
@@ -33,5 +36,6 @@ export const dialoguesRecord: Record<PaintingId, PaintingDialogues> = {
 	'prodigalSon': prodigalSon,
 	'chair': chairDialogues,
 	'money': moneyDialogues,
-	'venice': veniceDialogues
+	'venice': veniceDialogues,
+	'incorrect' : incorrectDialogues
 }
