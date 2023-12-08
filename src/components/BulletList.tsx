@@ -13,7 +13,7 @@ type IntroductionProps = {
 
 export function BulletList({title, subtitle, list}: IntroductionProps) {
   return (
-    <View>
+    <View style={styles.container}>
       {title && (
         <Text style={styles.title}>{title}</Text>
       )}
@@ -36,6 +36,9 @@ export function BulletList({title, subtitle, list}: IntroductionProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingRight: 10,
+  },
   title: {
     fontSize: fontSizes.large,
     fontWeight: 'bold',
