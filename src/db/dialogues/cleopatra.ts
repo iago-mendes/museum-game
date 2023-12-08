@@ -89,6 +89,7 @@ export const cleopatraDialogues: PaintingDialogues = {
                                                                                                                 next: {
                                                                                                                     speaker: 'Narrator',
                                                                                                                     text: "It seems like Bob is in dangerously bad shape. Taking one last moment to check up on Cleopatra, you rushed off. It would really suck for your group project and paycheck if Bob gets in even more trouble.",
+                                                                                                                    newUnlockedPainting: 'michael',
                                                                                                                     importantInfo: [
                                                                                                                         "Bob has turned <<RED> from rashes, and his wounds from messing with Korean Dog and Chinese Lion from earlier has swelled up.>",
                                                                                                                         "You need to find him, now!"

@@ -55,7 +55,8 @@ export const uniqueDialogue: PaintingDialogues = {
                                                                     text: "You are very much welcome, dear potter!",
                                                                     importantInfo: [
                                                                         'Bob went to a temple guarded by two <<BEASTS>> for a bathroom break'
-                                                                    ]
+                                                                    ],
+                                                                    newUnlockedPainting: 'dogLion',
 
 
                                                                 }

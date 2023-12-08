@@ -26,6 +26,7 @@ const studioTourDialogue: DialogueNode = {
                                 "Bob ate quite a bit, and was still hungry (what an @$$#0!3)",
                                 "Marie-Élisabeth was especially pissed at Bob for eating her fresh <<fruit>>."
                             ],
+                            newUnlockedPainting: 'stillLife',
                             newVisitedPainting: 'lady'
                         }
                     }
@@ -87,6 +88,7 @@ const dumpsterDialogueOption: DialogueNode = {
     next: {
         speaker: "Narrator",
         text: "Even worse, <<a bite was taken out of every piece>>…double gross!",
+        newUnlockedPainting: 'stillLife',
         importantInfo: [
             'Every piece of <<fruit>> in the dumpster had a bite taken out of it.'
         ]
@@ -183,6 +185,7 @@ export const ladyDialogues: PaintingDialogues = {
                                 importantInfo: [
                                     "This French lady made a reference you might have understood if you knew your French history."
                                 ],
+                                newUnlockedPainting: 'stillLife',
                                 newVisitedPainting: 'lady'
                             }
                         }

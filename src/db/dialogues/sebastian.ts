@@ -24,6 +24,7 @@ const playerOneDialogues: DialogueNode = {
               next: {
                 speaker: "Player *very Embarrassed*",
                 text: "…dang…I’d feel bad if…I WASN’T MESSING WITH YOU BACK!...No I was….",
+                newUnlockedPainting: 'michael',
               }
             }
           }
@@ -45,6 +46,7 @@ const playerTwoDialogues: DialogueNode = {
       next: {
         speaker: "St. Sebastian",
         text: "You poor <<DEVIL>>.",
+        newUnlockedPainting: 'michael',
         importantInfo: [
           "You have a feeling <<DEVIL>> is an important piece of information."
         ]

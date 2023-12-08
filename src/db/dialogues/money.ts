@@ -41,7 +41,8 @@ const uniqueDialogue: DialogueNode = {
 													text: "And Victor disappeared. You stood there for a while, confused. When you reached your hand inside your pocket, you discovered that your wallet is no longer there.",
 													importantInfo: [
 														'Bob went looking for mug.'
-													]
+													],
+													newUnlockedPainting: 'mug',
 												}
 											}
 										}
