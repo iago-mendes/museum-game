@@ -1,6 +1,8 @@
 import { PaintingId } from './paintingIds'
 
-export type Level = {
+export type LevelId = 'level1' | 'level2' | 'level3' | 'final'
+
+export type LevelData = {
 	title: string
 	paintings: PaintingId[]
 	password?: {
@@ -9,8 +11,8 @@ export type Level = {
 	}
 }
 
-export const levels: Level[] = [
-	{
+export const levels: Record<LevelId, LevelData> = {
+	'level1': {
 		title: 'Level 1',
 		paintings: [
 			'momAndDad',
@@ -19,7 +21,7 @@ export const levels: Level[] = [
 			'chair'
 		]
 	},
-	{
+	'level2': {
 		title: 'Level 2',
 		paintings: [
 			'money',
@@ -32,7 +34,7 @@ export const levels: Level[] = [
 			player2: 'money'
 		}
 	},
-	{
+	'level3': {
 		title: 'Level 3',
 		paintings: [
 			'dogLion',
@@ -46,7 +48,7 @@ export const levels: Level[] = [
 			player2: 'fruits'
 		}
 	},
-	{
+	'final': {
 		title: 'Final',
 		paintings: [
 		],
@@ -55,4 +57,4 @@ export const levels: Level[] = [
 			player2: 'tmp2'
 		}
 	}
-]
+}

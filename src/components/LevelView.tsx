@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 
-import { Level } from "../db/levels"
+import { LevelData } from "../db/levels"
 import { Text, View } from "../styles/ThemedComponents"
 import { usePlayer } from "../contexts/Player"
 import { paintingsInfo } from "../db/paintingsInfo"
@@ -10,7 +10,7 @@ import { colors, fontSizes } from "../styles/theme"
 import { BulletList } from "./BulletList"
 
 type LevelProps = {
-	level: Level
+	level: LevelData
 }
 
 export function LevelView({level}: LevelProps) {
