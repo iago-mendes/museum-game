@@ -56,8 +56,8 @@ export const levels: Record<LevelId, LevelData> = {
 		paintings: [
 		],
 		password: {
-			player1: 'tmp1',
-			player2: 'tmp2'
+			player1: 'red devil',
+			player2: 'red devil'
 		}
 	}
 }
