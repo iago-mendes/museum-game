@@ -15,6 +15,7 @@ type PlayerContextType = {
 	addUnlockedPainting: (id: PaintingId) => void
 	visitedPaintings: Set<PaintingId>
 	addVisitedPainting: (id: PaintingId) => void
+	removeVisitedPainting: (id: PaintingId) => void
 	addImportantInfo: (id: PaintingId, info: string[]) => void
 	importantInfo: Map<PaintingId, string[]>
 	reset: () => void
@@ -65,6 +66,10 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 		setVisitedPaintings(set => set.add(id))
 	}
 
+	function removeVisitedPainting(id: PaintingId){
+		visitedPaintings.delete(id)
+	}
+
 	function addImportantInfo(id: PaintingId, info: string[]) {
 		setImportantInfo(map => new Map(map.set(id, info)))
 	}
@@ -94,6 +99,7 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 				addUnlockedPainting,
 				visitedPaintings,
 				addVisitedPainting,
+				removeVisitedPainting,
 				addImportantInfo,
 				importantInfo,
 				reset,

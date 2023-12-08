@@ -23,6 +23,7 @@ export type DialogueNode = {
 	next?: DialogueNode
 	newUnlockedPainting?: PaintingId
 	newVisitedPainting?: PaintingId
+	removeVisitedPainting?: PaintingId
 	options?: DialogueOption[]
 	importantInfo?: string[]
 }
