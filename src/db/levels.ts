@@ -54,6 +54,7 @@ export const levels: Record<LevelId, LevelData> = {
 	'final': {
 		title: 'Final',
 		paintings: [
+			'michael'
 		],
 		password: {
 			player1: 'red devil',
