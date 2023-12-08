@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 import { Container } from '../styles/ThemedComponents'
-import { fontSizes } from '../styles/theme'
+import { colors } from '../styles/theme'
 import { ButtonWithIcon } from './ButtonWIthIcon'
 import { MechanicDetails } from './MechanicDetails'
 import { WinningDetails } from './WinningDetails'
@@ -14,33 +14,39 @@ export function DetailsSummary({onContinue}: DetailsSummaryProps) {
 
   return (
     <Container style={styles.screenContainer}>
-      <MechanicDetails />
+      <ScrollView style={styles.scrollView}>
+        <MechanicDetails />
+        <View style={styles.spacer} />
+        <WinningDetails />
+      </ScrollView>
 
-      <WinningDetails />
-      
-      <ButtonWithIcon
-        text="Continue"
-        icon="arrow-right"
-        onPress={() => onContinue()}
-				style={styles.button}
-      />
+      <View style={styles.buttonContainer}>
+        <ButtonWithIcon
+          text="Continue"
+          icon="arrow-right"
+          onPress={() => onContinue()}
+        />
+      </View>
     </Container>
   )
 }
 
 const styles = StyleSheet.create({
   screenContainer: {
-    paddingTop: 75,
-    paddingBottom: 20,
-    paddingHorizontal: 30,
+    paddingTop: 60,
     justifyContent: 'space-between',
-    gap: 20,
   },
-  title: {
-    fontSize: fontSizes.large,
-    fontWeight: 'bold',
+  scrollView: {
+    paddingHorizontal: 30,
   },
-  button: {
-		alignSelf: 'flex-end',
+  spacer: {
+    height: 20,
+  },
+  buttonContainer: {
+    padding: 20,
+    width: '100%',
+    alignItems: 'flex-end',
+    borderTopWidth: 2,
+    borderColor: colors.highlight,
 	},
 })
