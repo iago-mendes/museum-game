@@ -58,7 +58,7 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 	}
 
 	function addUnlockedPainting(id: PaintingId) {
-		setUnlockedPaintings(set => set.add(id))
+		setUnlockedPaintings(set => new Set(set.add(id)))
 	}
 
 	function addVisitedPainting(id: PaintingId) {
@@ -76,8 +76,9 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 		setPlayer('none')
 		
 		setUnlockedPaintings(new Set())
-		setImportantInfo(new Map())
 		setVisitedPaintings(new Set())
+		setImportantInfo(new Map())
+		setUnlockedLevels(['level1'])
 	}
 
 	function unlockLevel(id: LevelId) {

@@ -14,21 +14,28 @@ type LevelProps = {
 	data: LevelData
 }
 
-export function LevelView({id, data}: LevelProps) {
-  const {importantInfo, player, unlockLevel, unlockedLevels} = usePlayer()
+export function LevelView({id: levelId, data: levelData}: LevelProps) {
+  const {
+		importantInfo,
+		player,
+		unlockLevel,
+		unlockedLevels,
+		unlockedPaintings,
+	} = usePlayer()
 	const [givenPassword, setGivenPassword] = useState('')
 	const [unlocked, setUnlocked] = useState(false)
 	const [allowSubmitPassword, setAllowSubmitPassword] = useState(true)
+	const [showHint, setShowHint] = useState(false)
 
 	useEffect(() => {
-		setUnlocked(!data.password)
+		setUnlocked(!levelData.password)
 		setGivenPassword('')
 		setAllowSubmitPassword(false)
 	}, [player])
 
 	useEffect(() => {
 		let unlocked = false
-		unlockedLevels.forEach(levelId => {
+		unlockedLevels.forEach(id => {
 			if (levelId == id) {
 				unlocked = true
 			}
@@ -36,20 +43,36 @@ export function LevelView({id, data}: LevelProps) {
 		setUnlocked(unlocked)
 	}, [unlockedLevels])
 
+	useEffect(() => {
+		if (unlocked) {
+			setShowHint(false)
+			return
+		}
+
+		let readyForHint = false
+		levelData.paintings.forEach(id => {
+			if (unlockedPaintings.has(id)) {
+				readyForHint = true
+			}
+		})
+
+		setShowHint(readyForHint)
+	}, [unlocked, unlockedPaintings])
+
 	function updateGivenPassword(input: string) {
 		setGivenPassword(input)
 		setAllowSubmitPassword(input.length > 0)
 	}
 
 	function checkPassword() {
-		if (player == 'none' || !data.password || !allowSubmitPassword) {
+		if (player == 'none' || !levelData.password || !allowSubmitPassword) {
 			return
 		}
 
 		setAllowSubmitPassword(false)
 
-		if (givenPassword.trim().toLowerCase() == data.password[player].toLowerCase()) {
-			unlockLevel(id)
+		if (givenPassword.trim().toLowerCase() == levelData.password[player].toLowerCase()) {
+			unlockLevel(levelId)
 			Alert.alert("Congrats! You got the right password!")
 		} else {
 			setAllowSubmitPassword(true)
@@ -65,24 +88,29 @@ export function LevelView({id, data}: LevelProps) {
 	
 	return (
 		<View style={styles.levelContainer}>
-			<Text style={styles.levelTitle}>- {data.title} -</Text>
+			<Text style={styles.levelTitle}>- {levelData.title} -</Text>
 			{!unlocked ? (
 				<View style={styles.passwordContainer}>
 					<TextInput
-						style={styles.passwordInput}
 						onChangeText={input => updateGivenPassword(input)}
 						onBlur={() => checkPassword()}
 						value={givenPassword}
 						placeholder="Level password"
 						placeholderTextColor={colors.text+'40'}
+						editable={showHint}
+						style={[styles.passwordInput, showHint ? styles.inputHint : {}]}
 					/>
-					<TouchableOpacity onPress={() => checkPassword()} style={styles.passwordButton}>
+					<TouchableOpacity
+						onPress={() => checkPassword()}
+						disabled={!allowSubmitPassword}
+						style={[styles.passwordButton, showHint ? styles.buttonHint : {}]}
+					>
 						<FontAwesome name="arrow-right" style={styles.passwordButtonIcon} />
 					</TouchableOpacity>
 				</View>
 			) : (
 				<View style={styles.levelPaintingList}>
-					{data.paintings.map(id => (
+					{levelData.paintings.map(id => (
 						<View key={id} style={styles.paintingContainer}>
 							<Text>{paintingsInfo[id].title}</Text>
 							<Text>{paintingsInfo[id].date}</Text>
@@ -120,14 +148,17 @@ const styles = StyleSheet.create({
 		height: 50,
 		color: colors.text,
     borderWidth: 1,
-		borderColor: colors.primary,
+		borderColor: colors.highlight,
 		borderBottomLeftRadius: 10,
 		borderTopLeftRadius: 10,
     paddingHorizontal: 20,
 		paddingVertical: 10,
   },
+	inputHint: {
+		borderColor: colors.primary,
+	},
 	passwordButton: {
-		backgroundColor: colors.primary,
+		backgroundColor: colors.highlight,
     alignItems: 'center',
 		justifyContent: 'center',
 		width: 50,
@@ -135,6 +166,9 @@ const styles = StyleSheet.create({
     padding: 10,
 		borderBottomRightRadius: 10,
 		borderTopRightRadius: 10,
+	},
+	buttonHint: {
+		backgroundColor: colors.primary,
 	},
 	passwordButtonIcon: {
 		fontSize: fontSizes.large,

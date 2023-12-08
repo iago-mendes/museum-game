@@ -24,6 +24,7 @@ const sitOptionDialogue: DialogueNode = {
 							next: {
 								speaker: 'Player 2',
 								text: '... Venice it is.',
+								newUnlockedPainting: 'venice',
 								importantInfo: [
 									'Bob went to VENICE.'
 								]
