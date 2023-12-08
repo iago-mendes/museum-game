@@ -8,11 +8,13 @@ import { Container } from '../../styles/ThemedComponents'
 import { useState } from 'react'
 import { isPaintingId } from '../../db/paintingIds'
 import { ButtonWithIcon } from '../../components/ButtonWIthIcon'
+import { usePlayer } from '../../contexts/Player'
 
 export default function ScannerScreen() {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const isFocused = useIsFocused();
+  const {isPaintingTimeBlocked} = usePlayer()
 
   if (!permission) {
     // Camera permissions are still loading
@@ -48,11 +50,18 @@ export default function ScannerScreen() {
     if (scanned) {
       return
     }
+
+    const id = data.trim()
     
     setScanned(true);
     if (type == BarCodeScanner.Constants.BarCodeType.qr) {
-      if (isPaintingId(data.trim()))
-        router.push(`/dialogue/${data.trim()}`);
+      if (isPaintingId(id)) {
+        if (isPaintingTimeBlocked(id)) {
+          router.push(`/dialogue/incorrect`);
+        } else {
+          router.push(`/dialogue/${id}`);
+        }
+      }
       else
         Alert.alert(`Wrong painting scanned (${data})`);
     } else {

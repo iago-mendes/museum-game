@@ -4,7 +4,7 @@ import SelectPlayer from '../components/SelectPlayer'
 import { Introduction } from '../components/Introduction'
 import { Welcome } from '../components/Welcome'
 import { DetailsSummary } from '../components/DetailsSummary'
-import { LevelId } from '../db/levels'
+import { LevelId, levels } from '../db/levels'
 
 export type Player = 'player1' | 'player2' | 'none'
 
@@ -20,6 +20,7 @@ type PlayerContextType = {
 	reset: () => void
 	unlockedLevels: LevelId[]
 	unlockLevel: (id: LevelId) => void
+	isPaintingTimeBlocked: (paintingId: PaintingId) => boolean
 }
 
 export const PlayerContext = createContext({} as PlayerContextType)
@@ -85,6 +86,18 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 		setUnlockedLevels(prev => [...prev, id])
 	}
 
+	function isPaintingTimeBlocked(paintingId: PaintingId) {
+		let timeBlocked = true
+		unlockedLevels.forEach(levelId => {
+      levels[levelId].paintings.forEach(id => {
+        if (paintingId == id) {
+          timeBlocked = false
+        }
+      })
+		})
+		return timeBlocked
+	}
+
 	return (
 		<PlayerContext.Provider
 			value={{
@@ -99,6 +112,7 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 				reset,
 				unlockedLevels,
 				unlockLevel,
+				isPaintingTimeBlocked,
 			}}
 		>
 			{showWelcome ? (
