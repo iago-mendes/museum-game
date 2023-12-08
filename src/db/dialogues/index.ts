@@ -10,6 +10,7 @@ import { dogLionDialogues } from "./dogLion"
 import { uniqueDialogue } from "./mug"
 import { ladyDialogues } from './lady'
 import { cleopatraDialogues } from './cleopatra'
+import { michael } from "./michael"
 
 export type PaintingDialogues = {
 	locked?: DialogueNode
@@ -91,26 +92,5 @@ export const dialoguesRecord: Record<PaintingId, PaintingDialogues> = {
 	},
 	dogLion: dogLionDialogues,
 	cleopatra: cleopatraDialogues,
-	michael: {
-		locked: undefined,
-		visited: undefined,
-		player1: {
-			text: '',
-			speaker: '',
-			next: undefined,
-			newUnlockedPainting: undefined,
-			newVisitedPainting: undefined,
-			options: undefined,
-			importantInfo: undefined
-		},
-		player2: {
-			text: '',
-			speaker: '',
-			next: undefined,
-			newUnlockedPainting: undefined,
-			newVisitedPainting: undefined,
-			options: undefined,
-			importantInfo: undefined
-		}
-	}
+	michael: michael
 }
