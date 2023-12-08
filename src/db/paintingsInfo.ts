@@ -43,23 +43,23 @@ export const paintingsInfo: Record<PaintingId, PaintingInfo> = {
 		date: '1796'
 	},
 	stillLife: {
-		title: '',
-		date: ''
+		title: 'Still Life',
+		date: '1645'
 	},
 	sebastian: {
-		title: '',
-		date: ''
+		title: 'St. Sebastian',
+		date: '1500'
 	},
 	dogLion: {
-		title: '',
-		date: ''
+		title: 'Komainu (Korean Dog) and Shishi (Chinese Lion)',
+		date: '14th–15th century'
 	},
 	cleopatra: {
-		title: '',
-		date: ''
+		title: 'Cleopatra',
+		date: '1515'
 	},
 	michael: {
-		title: '',
-		date: ''
+		title: 'St. Michael Fighting the Devil',
+		date: '1500'
 	}
 }
