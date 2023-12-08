@@ -8,6 +8,7 @@ import { veniceDialogues } from './venice'
 import { incorrectDialogues } from './incorrect'
 import { dogLionDialogues } from "./dogLion"
 import { uniqueDialogue } from "./mug"
+import { ladyDialogues } from './lady'
 
 export type PaintingDialogues = {
 	locked?: DialogueNode
@@ -40,28 +41,7 @@ export const dialoguesRecord: Record<PaintingId, PaintingDialogues> = {
 	'money': moneyDialogues,
 	'venice': veniceDialogues,
 	'incorrect': incorrectDialogues,
-	lady: {
-		locked: undefined,
-		visited: undefined,
-		player1: {
-			text: '',
-			speaker: '',
-			next: undefined,
-			newUnlockedPainting: undefined,
-			newVisitedPainting: undefined,
-			options: undefined,
-			importantInfo: undefined
-		},
-		player2: {
-			text: '',
-			speaker: '',
-			next: undefined,
-			newUnlockedPainting: undefined,
-			newVisitedPainting: undefined,
-			options: undefined,
-			importantInfo: undefined
-		}
-	},
+	lady: ladyDialogues,
 	mug: uniqueDialogue,
 	stillLife: {
 		locked: undefined,

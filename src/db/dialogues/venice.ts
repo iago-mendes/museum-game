@@ -48,7 +48,8 @@ const uniqueDialogue: DialogueNode = {
 															importantInfo: [
 																'Bob went looking for a French woman.',
 																'Someone who understands French should look for her.'
-															]
+															],
+															newUnlockedPainting: 'lady'
 														}
 													}
 												}

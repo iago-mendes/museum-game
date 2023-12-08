@@ -40,6 +40,7 @@ export default function SelectPlayer({updatePlayer}: SelectPlayerProps) {
 				<CharacterDetails />
       </ScrollView>
 
+
       <View style={styles.buttonContainer}>
 				<ButtonWithIcon
 					text="Continue"
