@@ -116,7 +116,7 @@ const victoireOptionDialogue: DialogueNode = {
                             text: "It remains to be seen whether or not Player 2 will live up to their word.",
                             next: {
                                 speaker: "Player (in head)",
-                                text: "*Wow. This Bob Doe guy really sucks...why are we saving his ass again?",
+                                text: "*Wow. This Bob Doe guy really sucks...why are we saving his ass again?*",
                                 next: studioTourDialogue
                             }
                         }
