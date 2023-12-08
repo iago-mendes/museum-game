@@ -32,7 +32,7 @@ export function usePlayer() {
 export function PlayerProvider({children}: {children: ReactNode}) {
 	const [showWelcome, setShowWelcome] = useState(true)
 	const [showIntroduction, setShowIntroduction] = useState(true)
-	const [showDetailsSummary, setShowDetailsSummary] = useState(true)
+	const [showDetailsSummary, setShowDetailsSummary] = useState(false)
 	const [player, setPlayer] = useState<Player>('none')
 	
 	const [unlockedPaintings, setUnlockedPaintings] = useState<Set<PaintingId>>(new Set())

@@ -36,7 +36,7 @@ export default function SelectPlayer({updatePlayer}: SelectPlayerProps) {
 				</Picker>
 			</View>
 
-			<CharacterDetails />
+			
 
 			<ButtonWithIcon
 				text="Continue"

@@ -39,8 +39,8 @@ export const paintingsInfo: Record<PaintingId, PaintingInfo> = {
 		date: 'not applicable'
 	},
 	lady: {
-		title: '',
-		date: ''
+		title: 'Self-Portrait with Straw Hat and Palette',
+		date: '1796'
 	},
 	stillLife: {
 		title: '',
