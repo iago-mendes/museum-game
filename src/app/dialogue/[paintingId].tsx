@@ -27,6 +27,7 @@ export default function DialogueScreen() {
     addVisitedPainting,
     removeVisitedPainting,
     addImportantInfo,
+    addToImportantInfo,
     unlockedLevels
   } = usePlayer()
 
@@ -119,6 +120,10 @@ export default function DialogueScreen() {
 
     if (dialogue.importantInfo) {
       addImportantInfo(paintingId, dialogue.importantInfo)
+    }
+
+    if (dialogue.addImportantInfo){
+      addToImportantInfo(paintingId, dialogue.addImportantInfo)
     }
 
     setShownDialogue(shownDialogue => !dialogue ? shownDialogue : [...shownDialogue, dialogue])

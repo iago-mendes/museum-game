@@ -17,6 +17,7 @@ type PlayerContextType = {
 	addVisitedPainting: (id: PaintingId) => void
 	removeVisitedPainting: (id: PaintingId) => void
 	addImportantInfo: (id: PaintingId, info: string[]) => void
+	addToImportantInfo: (id: PaintingId, info: string) => void
 	importantInfo: Map<PaintingId, string[]>
 	reset: () => void
 	unlockedLevels: LevelId[]
@@ -74,6 +75,10 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 		setImportantInfo(map => new Map(map.set(id, info)))
 	}
 
+	function addToImportantInfo(id: PaintingId, info: string) {
+		importantInfo.get(id)?.push(info) 
+	}
+
 	function reset() {
 		setShowWelcome(true)
 		setShowIntroduction(true)
@@ -101,6 +106,7 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 				addVisitedPainting,
 				removeVisitedPainting,
 				addImportantInfo,
+				addToImportantInfo,
 				importantInfo,
 				reset,
 				unlockedLevels,

@@ -16,6 +16,7 @@ export const levels: Record<LevelId, LevelData> = {
 	'level1': {
 		title: 'Level 1',
 		paintings: [
+			'stillLife',
 			'momAndDad',
 			'harmonizing',
 			'prodigalSon',
