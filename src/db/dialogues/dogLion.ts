@@ -271,7 +271,6 @@ const uniqueDialogue: DialogueNode = {
 } 
 
 export const dogLionDialogues: PaintingDialogues = {
-    // locked: ,
 	player1: uniqueDialogue,
 	player2: uniqueDialogue
 }
@@ -279,3 +278,11 @@ export const dogLionDialogues: PaintingDialogues = {
 
 
 
+
+/**
+ * 
+ * A
+ * B
+ * C
+ * 
+ */
