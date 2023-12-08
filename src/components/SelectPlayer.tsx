@@ -2,7 +2,7 @@ import {Picker} from '@react-native-picker/picker'
 
 import { Container, Text, View } from '../styles/ThemedComponents'
 import { Player } from '../contexts/Player'
-import { StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { colors, fontSizes } from '../styles/theme'
 import { useState } from 'react'
 import { ButtonWithIcon } from './ButtonWIthIcon'
@@ -23,28 +23,32 @@ export default function SelectPlayer({updatePlayer}: SelectPlayerProps) {
 
   return (
     <Container style={styles.container}>
-      <View style={styles.group}>
-				<Text style={styles.title}>Select your player</Text>
-				<Picker
-					selectedValue={tmpPlayer}
-					onValueChange={value => setTmpPlayer(value)}
-					style={styles.picker}
-				>
-						<Picker.Item label="(none)" value="none" />
-						<Picker.Item label="Player 1" value="player1" />
-						<Picker.Item label="Player 2" value="player2" />
-				</Picker>
-			</View>
+      <ScrollView style={styles.scrollView}>
+				<View style={styles.group}>
+					<Text style={styles.title}>Select your player</Text>
+					<Picker
+						selectedValue={tmpPlayer}
+						onValueChange={value => setTmpPlayer(value)}
+						style={styles.picker}
+					>
+							<Picker.Item label="(none)" value="none" />
+							<Picker.Item label="Player 1" value="player1" />
+							<Picker.Item label="Player 2" value="player2" />
+					</Picker>
+				</View>
 
-			
+				<CharacterDetails />
+      </ScrollView>
 
-			<ButtonWithIcon
-				text="Continue"
-				icon="arrow-right"
-				onPress={() => handleContinue()}
-				disabled={tmpPlayer == 'none'}
-				style={styles.button}
-			/>
+
+      <View style={styles.buttonContainer}>
+				<ButtonWithIcon
+					text="Continue"
+					icon="arrow-right"
+					onPress={() => handleContinue()}
+					disabled={tmpPlayer == 'none'}
+				/>
+      </View>
     </Container>
   )
 }
@@ -52,14 +56,17 @@ export default function SelectPlayer({updatePlayer}: SelectPlayerProps) {
 const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'space-between',
-		paddingHorizontal: 40,
-		paddingVertical: 75,
+    paddingTop: 60,
 	},
+	scrollView: {
+    paddingHorizontal: 30,
+  },
 	group: {
 		width: '100%',
 		alignItems: 'center',
 		gap: 40,
-		marginTop: 200,
+		marginTop: 100,
+		marginBottom: 75
 	},
 	title: {
 		fontSize: fontSizes.large,
@@ -71,7 +78,11 @@ const styles = StyleSheet.create({
 		color: colors.text,
 		borderRadius: 10,
 	},
-	button: {
-		alignSelf: 'flex-end',
-	}
+	buttonContainer: {
+    padding: 20,
+    width: '100%',
+    alignItems: 'flex-end',
+    borderTopWidth: 2,
+    borderColor: colors.highlight,
+	},
 })
