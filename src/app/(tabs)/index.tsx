@@ -9,7 +9,7 @@ export default function MapScreen() {
     <Container>
       <ScrollView style={styles.scrollView}>
         {Object.entries(levels).map(([id, data]) => (
-          <LevelView level={data} key={id} />
+          <LevelView data={data} id={id as any} key={id} />
         ))}
       </ScrollView>
     </Container>

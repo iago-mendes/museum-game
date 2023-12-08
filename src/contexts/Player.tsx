@@ -4,6 +4,7 @@ import SelectPlayer from '../components/SelectPlayer'
 import { Introduction } from '../components/Introduction'
 import { Welcome } from '../components/Welcome'
 import { DetailsSummary } from '../components/DetailsSummary'
+import { LevelId } from '../db/levels'
 
 export type Player = 'player1' | 'player2' | 'none'
 
@@ -17,6 +18,8 @@ type PlayerContextType = {
 	addImportantInfo: (id: PaintingId, info: string[]) => void
 	importantInfo: Map<PaintingId, string[]>
 	reset: () => void
+	unlockedLevels: LevelId[]
+	unlockLevel: (id: LevelId) => void
 }
 
 export const PlayerContext = createContext({} as PlayerContextType)
@@ -31,10 +34,11 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 	const [showIntroduction, setShowIntroduction] = useState(true)
 	const [showDetailsSummary, setShowDetailsSummary] = useState(true)
 	const [player, setPlayer] = useState<Player>('none')
-
+	
 	const [unlockedPaintings, setUnlockedPaintings] = useState<Set<PaintingId>>(new Set())
 	const [visitedPaintings, setVisitedPaintings] = useState<Set<PaintingId>>(new Set())
 	const [importantInfo, setImportantInfo] = useState<Map<PaintingId, string[]>>(new Map())
+	const [unlockedLevels, setUnlockedLevels] = useState<LevelId[]>(['level1'])
 
 	useEffect(() => {
 		setUnlockedPaintings(new Set())
@@ -76,6 +80,10 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 		setVisitedPaintings(new Set())
 	}
 
+	function unlockLevel(id: LevelId) {
+		setUnlockedLevels(prev => [...prev, id])
+	}
+
 	return (
 		<PlayerContext.Provider
 			value={{
@@ -87,7 +95,9 @@ export function PlayerProvider({children}: {children: ReactNode}) {
 				addVisitedPainting,
 				addImportantInfo,
 				importantInfo,
-				reset
+				reset,
+				unlockedLevels,
+				unlockLevel,
 			}}
 		>
 			{showWelcome ? (

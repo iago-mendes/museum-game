@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 
-import { LevelData } from "../db/levels"
+import { LevelData, LevelId } from "../db/levels"
 import { Text, View } from "../styles/ThemedComponents"
 import { usePlayer } from "../contexts/Player"
 import { paintingsInfo } from "../db/paintingsInfo"
@@ -10,20 +10,31 @@ import { colors, fontSizes } from "../styles/theme"
 import { BulletList } from "./BulletList"
 
 type LevelProps = {
-	level: LevelData
+	id: LevelId
+	data: LevelData
 }
 
-export function LevelView({level}: LevelProps) {
-  const {importantInfo, player} = usePlayer()
+export function LevelView({id, data}: LevelProps) {
+  const {importantInfo, player, unlockLevel, unlockedLevels} = usePlayer()
 	const [givenPassword, setGivenPassword] = useState('')
 	const [unlocked, setUnlocked] = useState(false)
 	const [allowSubmitPassword, setAllowSubmitPassword] = useState(true)
 
 	useEffect(() => {
-		setUnlocked(!level.password)
+		setUnlocked(!data.password)
 		setGivenPassword('')
 		setAllowSubmitPassword(false)
 	}, [player])
+
+	useEffect(() => {
+		let unlocked = false
+		unlockedLevels.forEach(levelId => {
+			if (levelId == id) {
+				unlocked = true
+			}
+		})
+		setUnlocked(unlocked)
+	}, [unlockedLevels])
 
 	function updateGivenPassword(input: string) {
 		setGivenPassword(input)
@@ -31,16 +42,15 @@ export function LevelView({level}: LevelProps) {
 	}
 
 	function checkPassword() {
-		if (player == 'none' || !level.password || !allowSubmitPassword) {
+		if (player == 'none' || !data.password || !allowSubmitPassword) {
 			return
 		}
 
 		setAllowSubmitPassword(false)
 
-		if (givenPassword.trim().toLowerCase() == level.password[player].toLowerCase()) {
-			setUnlocked(true)
+		if (givenPassword.trim().toLowerCase() == data.password[player].toLowerCase()) {
+			unlockLevel(id)
 			Alert.alert("Congrats! You got the right password!")
-
 		} else {
 			setAllowSubmitPassword(true)
 			Alert.alert("Wrong password! Try again!")
@@ -55,7 +65,7 @@ export function LevelView({level}: LevelProps) {
 	
 	return (
 		<View style={styles.levelContainer}>
-			<Text style={styles.levelTitle}>- {level.title} -</Text>
+			<Text style={styles.levelTitle}>- {data.title} -</Text>
 			{!unlocked ? (
 				<View style={styles.passwordContainer}>
 					<TextInput
@@ -72,7 +82,7 @@ export function LevelView({level}: LevelProps) {
 				</View>
 			) : (
 				<View style={styles.levelPaintingList}>
-					{level.paintings.map(id => (
+					{data.paintings.map(id => (
 						<View key={id} style={styles.paintingContainer}>
 							<Text>{paintingsInfo[id].title}</Text>
 							<Text>{paintingsInfo[id].date}</Text>

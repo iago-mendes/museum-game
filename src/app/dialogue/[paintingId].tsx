@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 import { Container, Text, View } from '../../styles/ThemedComponents'
 import { isPaintingId } from '../../db/paintingIds'
@@ -10,6 +11,7 @@ import { colors, fontSizes } from '../../styles/theme'
 import { paintingsInfo } from '../../db/paintingsInfo'
 import { ButtonWithIcon } from '../../components/ButtonWIthIcon'
 import { ParsedText } from '../../components/ParsedText'
+import { levels } from '../../db/levels'
 
 export default function DialogueScreen() {
   const params = useLocalSearchParams<{paintingId?: string}>()
@@ -17,7 +19,15 @@ export default function DialogueScreen() {
   const scrollViewRef = useRef<ScrollView>(null)
   const navigation = useNavigation()
 
-  const {player, unlockedPaintings, addUnlockedPainting, visitedPaintings, addVisitedPainting, addImportantInfo} = usePlayer()
+  const {
+    player,
+    unlockedPaintings,
+    addUnlockedPainting,
+    visitedPaintings,
+    addVisitedPainting,
+    addImportantInfo,
+    unlockedLevels
+  } = usePlayer()
 
   const [dialogue, setDialogue] = useState<DialogueNode | undefined>(undefined)
   const [shownDialogue, setShownDialogue] = useState<DialogueNode[]>([])
@@ -25,6 +35,7 @@ export default function DialogueScreen() {
   const [showNextButton, setShowNextButton] = useState(true)
   const [showNextDialogue, setShowNextDialogue] = useState(true)
   const [showExitButton, setShowExitButton] = useState(false)
+	const [timeBlocked, setTimeBlocked] = useState(false)
 
   useEffect(() => {
     if (!paintingId || !isPaintingId(paintingId) || player == 'none') {
@@ -70,6 +81,18 @@ export default function DialogueScreen() {
       }
     }
   }, [dialogue, showNextButton, shownOptions])
+
+  useEffect(() => {
+		let timeBlocked = true
+		unlockedLevels.forEach(levelId => {
+      levels[levelId].paintings.forEach(id => {
+        if (paintingId == id) {
+          timeBlocked = false
+        }
+      })
+		})
+		setTimeBlocked(timeBlocked)
+	}, [unlockedLevels])
 
   function addNextDialogue() {
     if (!isPaintingId(paintingId) || !dialogue) {
@@ -131,6 +154,13 @@ export default function DialogueScreen() {
   if (player == 'none') return (
     <Container>
       <Text>Error: you need to select a player!</Text>
+    </Container>
+  )
+
+  if (timeBlocked) return (
+    <Container>
+			<FontAwesome name="warning" style={styles.timeBlockIcon} />
+      <Text style={styles.timeBlockText}>This painting is not in your time period!</Text>
     </Container>
   )
 
@@ -227,5 +257,17 @@ const styles = StyleSheet.create({
   },
   speaker: {
     fontWeight: 'bold',
+  },
+  timeBlockIcon: {
+    fontWeight: 'bold',
+    fontSize: 100,
+    color: colors.text,
+    marginBottom: 25,
+  },
+  timeBlockText: {
+    fontWeight: 'bold',
+    fontSize: fontSizes.large,
+    marginHorizontal: 100,
+    textAlign: 'center',
   },
 })
