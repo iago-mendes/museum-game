@@ -24,6 +24,8 @@ export const levels: Level[] = [
 		paintings: [
 			'money',
 			'venice',
+			'mug',
+			'lady'
 		],
 		password: {
 			player1: 'venice',
@@ -33,10 +35,15 @@ export const levels: Level[] = [
 	{
 		title: 'Level 3',
 		paintings: [
+			'dogLion',
+			'stillLife',
+			'sebastian',
+			'cleopatra'
+
 		],
 		password: {
-			player1: 'tmp1',
-			player2: 'tmp2'
+			player1: 'beasts',
+			player2: 'fruits'
 		}
 	},
 	{

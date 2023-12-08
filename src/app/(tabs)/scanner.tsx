@@ -51,8 +51,8 @@ export default function ScannerScreen() {
     
     setScanned(true);
     if (type == BarCodeScanner.Constants.BarCodeType.qr) {
-      if (isPaintingId(data))
-        router.push(`/dialogue/${data}`);
+      if (isPaintingId(data.trim()))
+        router.push(`/dialogue/${data.trim()}`);
       else
         Alert.alert(`Wrong painting scanned (${data})`);
     } else {

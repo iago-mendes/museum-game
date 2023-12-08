@@ -30,8 +30,36 @@ export const paintingsInfo: Record<PaintingId, PaintingInfo> = {
 		title: 'View of Venice',
 		date: '1841'
 	},
+	mug: {
+		title: 'Bear-shaped Drinking Vessel',
+		date: '1710-50'
+	},
 	incorrect: {
 		title: 'The place where none shall go...yet',
 		date: 'not applicable'
+	},
+	lady: {
+		title: '',
+		date: ''
+	},
+	stillLife: {
+		title: '',
+		date: ''
+	},
+	sebastian: {
+		title: '',
+		date: ''
+	},
+	dogLion: {
+		title: '',
+		date: ''
+	},
+	cleopatra: {
+		title: '',
+		date: ''
+	},
+	michael: {
+		title: '',
+		date: ''
 	}
 }

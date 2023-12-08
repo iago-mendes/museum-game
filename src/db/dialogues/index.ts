@@ -6,6 +6,8 @@ import { moneyDialogues } from './money'
 import { prodigalSon } from './prodigalSon'
 import { veniceDialogues } from './venice'
 import { incorrectDialogues } from './incorrect'
+import { dogLionDialogues } from "./dogLion"
+import { uniqueDialogue } from "./mug"
 
 export type PaintingDialogues = {
 	locked?: DialogueNode
@@ -37,5 +39,117 @@ export const dialoguesRecord: Record<PaintingId, PaintingDialogues> = {
 	'chair': chairDialogues,
 	'money': moneyDialogues,
 	'venice': veniceDialogues,
-	'incorrect' : incorrectDialogues
+	'incorrect': incorrectDialogues,
+	lady: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	mug: uniqueDialogue,
+	stillLife: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	sebastian: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	dogLion: dogLionDialogues,
+	cleopatra: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	},
+	michael: {
+		locked: undefined,
+		visited: undefined,
+		player1: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		},
+		player2: {
+			text: '',
+			speaker: '',
+			next: undefined,
+			newUnlockedPainting: undefined,
+			newVisitedPainting: undefined,
+			options: undefined,
+			importantInfo: undefined
+		}
+	}
 }
