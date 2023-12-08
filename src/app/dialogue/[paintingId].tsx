@@ -83,6 +83,11 @@ export default function DialogueScreen() {
   }, [dialogue, showNextButton, shownOptions])
 
   useEffect(() => {
+    if (paintingId == 'incorrect') {
+		  setTimeBlocked(false)
+      return
+    }
+
 		let timeBlocked = true
 		unlockedLevels.forEach(levelId => {
       levels[levelId].paintings.forEach(id => {
@@ -92,7 +97,7 @@ export default function DialogueScreen() {
       })
 		})
 		setTimeBlocked(timeBlocked)
-	}, [unlockedLevels])
+	}, [unlockedLevels, paintingId])
 
   function addNextDialogue() {
     if (!isPaintingId(paintingId) || !dialogue) {
