@@ -23,6 +23,7 @@ export default function DialogueScreen() {
     addUnlockedPainting,
     visitedPaintings,
     addVisitedPainting,
+    removeVisitedPainting,
     addImportantInfo,
   } = usePlayer()
 
@@ -85,6 +86,10 @@ export default function DialogueScreen() {
 
     if(dialogue.newVisitedPainting){
       addVisitedPainting(dialogue.newVisitedPainting)
+    }
+
+    if(dialogue.removeVisitedPainting){
+      removeVisitedPainting(paintingId)
     }
 
     if (dialogue.newUnlockedPainting) {

@@ -112,11 +112,11 @@ const victoireOptionDialogue: DialogueNode = {
                         speaker: "Player",
                         text: "I swear it! Bob Doe will pay!",
                         next: {
-                            speaker: "Player",
-                            text: "I swear it, Bob Doe will pay!",
+                            speaker: "Narrator",
+                            text: "It remains to be seen whether or not Player 2 will live up to their word.",
                             next: {
                                 speaker: "Player (in head)",
-                                text: "*Wow. This Bob Doe guy really sucks...why are we saving his ass again?",
+                                text: "*Wow. This Bob Doe guy really sucks...why are we saving his ass again?*",
                                 next: studioTourDialogue
                             }
                         }
